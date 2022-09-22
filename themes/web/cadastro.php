@@ -101,19 +101,20 @@ header("Access-Control-Allow-Origin: *");
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             const dataUser = new FormData(form);
-            // enviar para a rota já definida
-            const data = await fetch("<?= url("cadastro " ); ?>", {
+            const data = await fetch("<?= url("cadastro"); ?>", {
                     method: "POST",
                     body: dataUser,
                 });
             const user = await data.json();
             console.log(user);
-            // tratamento da mensagem
             if (user) {
                 message.innerHTML = user.message;
                 message.classList.remove("success", "warning", "error");
                 message.classList.add("message");
                 message.classList.add(`${user.type}`);
+            }
+            if (user.type == "success") {
+                window.location.href = "login";
             }
         });
     </script>

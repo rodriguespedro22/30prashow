@@ -77,6 +77,9 @@
                             message.classList.add("message");
                             message.classList.remove("success", "warning", "error");
                             message.classList.add(`${user.type}`);
+                            if (user.type == "success") {
+                                window.location.href = "http://www.localhost/30prashow";
+                            }
                         }
                     });
                 </script>

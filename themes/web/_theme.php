@@ -83,10 +83,10 @@
 
           <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto ">
-              <li><a href="sobre" class="nav-link">Sobre nós</a></li>
-              <li><a href="login" class="nav-link">Faça o login</a></li>
-              <li><a href="cadastro" class="nav-link">Faça seu cadastro</a></li>
-              <li><a href="contato" class="nav-link">Contato</a></li>
+              <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
+              <li><a href="login" class="nav-link text-white">Faça o login</a></li>
+              <li><a href="cadastro" class="nav-link text-white">Faça seu cadastro</a></li>
+              <li><a href="contato" class="nav-link text-white">Contato</a></li>
             </ul>
           </nav>
         </div>
@@ -107,7 +107,7 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-6">
           <div class="ratio ratio-16x9" style="margin-top: 50px;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/WsE3mruRak8" 
+            <iframe class="iframe" width="560" height="315" src="https://www.youtube.com/embed/WsE3mruRak8" 
               title="YouTube video player" frameborder="0" allow="accelerometer; 
               autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
             </iframe>
@@ -144,7 +144,7 @@
         <!--Grid row-->
         <div class="row">
           <!--Grid column-->
-          <div class="col-lg-3 col-md-6 mb-4 mb-md-0 m-auto">
+          <div class="col-lg-3 col-md-6 mb-2 mb-md-0 m-auto pb-5">
             <h5 class="text-uppercase">Cantores</h5>
 
             <ul class="list-unstyled mb-0">
@@ -212,14 +212,18 @@
 
             <ul class="list-unstyled mb-0">
               <li>
-                <a href="#!" class="text-white">Horário de Atendimento<br/>
-              </a>
+                <p href="#!" class="text-white" style="text-shadow: 4px 4px 20px rgba(0,0,0,0.6);">Horário de atendimento:<br/>
+                                                08:00 às 20:00 - <br/>
+                                                Segunda a Sábado, <br/>
+                                                horário de Brasília
+              </p>
               </li>
               <li>
-                <a href="#!" class="text-white">Link 2</a>
+                <p class="text-white" style="font-weight: bold">Email:</p>
+                <p class="text-white">pedrocunha.ch550@academico.ifsul.edu.br</p>
               </li>
               <li>
-                <a href="#!" class="text-white">Link 3</a>
+                <!-- <a href="#!" class="text-white">Link 3</a> -->
               </li>
               <li>
                 <!-- <a href="#!" class="text-white">Link 4</a> -->

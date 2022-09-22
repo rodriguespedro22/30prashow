@@ -61,7 +61,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-text"><?= $show->day; ?></h5>
-          <p class="card-text"><?= $show->name; ?></p>
+          <p class="card-text text-black font-weight-bold"><?= $show->name; ?></p>
           <div class="d-grid gap-2 d-md-block">
             <p class="card-text"><small class="text-muted"><?= $show->local;?></small></p>
           </div>

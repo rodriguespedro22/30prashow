@@ -120,7 +120,19 @@ class User
     /**
      * @return array|false
      */
-    public function selectAll ()
+    public function findByCategory(int $idCategory)
+    {
+        $query = "SELECT * FROM shows WHERE idCategory = :idCategory";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":idCategory",$idCategory);
+        $stmt->execute();
+        if($stmt->rowCount() == 0){
+            return false;
+        } else {
+            return $stmt->fetchAll();
+        }
+    }
+    public function selectAll()
     {
         $query = "SELECT * FROM users";
         $stmt = Connect::getInstance()->prepare($query);
@@ -132,7 +144,6 @@ class User
             return $stmt->fetchAll();
         }
     }
-
     /**
      * @return bool
      */
@@ -169,7 +180,7 @@ class User
             return false;
         }
     }
-
+    
     /**
      * @param string $email
      * @param string $password
@@ -181,25 +192,23 @@ class User
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
-
         if($stmt->rowCount() == 0){
-            $this->message = "Usuário e/ou Senha não cadastrados!";
+            $this->message = "Email e/ou Senha não cadastrados!";
             return false;
         } else {
             $user = $stmt->fetch();
             if(!password_verify($password, $user->password)){
-                $this->message = "Usuário e/ou Senha não cadastrados!";
+                $this->message = "Email e/ou Senha não cadastrados!";
                 return false;
             }
         }
 
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->message = "Usuário Autorizado, redirect to APP!";
-
+        $this->message = "Logado!";
         return true;
+        
     }
-
     /**
      * @return bool
      */
@@ -211,7 +220,7 @@ class User
         $stmt->bindParam(":email", $this->email);
         $stmt->bindValue(":password", password_hash($this->password,PASSWORD_DEFAULT));
         $stmt->execute();
-        $this->message = "Usuário cadastrado com sucesso!";
+        $this->message = "Cadastrado!";
         return true;
     }
 
