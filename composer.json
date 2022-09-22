@@ -1,0 +1,30 @@
+{
+    "name": "pedrorodrigss/30prashow",
+    "description": "30prashow, venda de ingressos",
+    "minimum-stability": "stable",
+    "authors": [
+      {
+        "name": "Pedro Rodrigues",
+        "email": "pedrocunha.ch550@academico.ifsul.edu.br",
+        "homepage": "https://www.ifsul.edu.br",
+        "role": "Developer"
+      }
+    ],
+    "config": {
+      "vendor-dir": "vendor"
+    },
+    "autoload": {
+      "psr-4": {
+        "Source\\": "source/"
+      },
+      "files": [
+        "source/Boot/Config.php",
+        "source/Boot/Helpers.php"
+      ]
+    },
+    "require": {
+      "dompdf/dompdf": "^2.0",
+      "coffeecode/router": "1.0.8",
+      "league/plates": "v3.4.0"
+    }
+  }

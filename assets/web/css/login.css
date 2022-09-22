@@ -1,0 +1,115 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Open+Sans:wght@700&family=Smooch+Sans:wght@800&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    font-size: 62.5%;
+    /* 1 rem = 10px*/
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.bg-image {
+    background-image: url("../images/backgroundlogin.jpg");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+
+.container {
+    max-width: 85rem;
+    box-shadow: 0 .5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.container .formularioLogin .text {
+    font-size: 2.6rem;
+}
+
+.container .formularioLogin .formularioInput {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    margin: 1rem 0;
+    position: relative;
+
+}
+
+.container .formularioLogin .formularioInput input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding: 0 3rem;
+    font-size: 1.6rem;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.button {
+    background-color: black;
+    cursor: pointer;
+}
+
+.container .formularioLogin .formularioInput input[type="submit"] {
+    border: 0;
+    color: #fff;
+    border-radius: .5rem;
+}
+
+.container .formularioLogin .formularioInput i {
+    position: absolute;
+    font-size: 1.6rem;
+}
+
+.container .formularioLogin .esqueceuSenha a {
+    text-decoration: none;
+}
+
+.container .formularioLogin {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.8rem;
+}
+
+.container .formularioLogin .redesSociais {
+    text-align: center;
+}
+
+.container .formularioLogin .redesSociais i {
+    margin: 1rem;
+    font-size: 3rem;
+}
+
+.container .formularioLogin .criarConta a {
+    text-decoration: none;
+}
+
+.container a {
+    color: #a77f6c;
+}
+
+.imgLogin {
+    width: 50%;
+    max-height: 37.4rem;
+}
+
+.criarConta {
+    margin-top: 1rem;
+}
