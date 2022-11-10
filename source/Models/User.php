@@ -11,6 +11,23 @@ class User
     private $email;
     private $password;
     private $document;
+    private $photo;
+
+    /**
+     * @return string|null
+     */
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param string|null $photo
+     */
+    public function setPhoto(?string $photo): void
+    {
+        $this->photo = $photo;
+    }
     private $message;
 
     /**
@@ -107,7 +124,8 @@ class User
         string $name = NULL,
         string $email = NULL,
         string $password = NULL,
-        string $document= NULL
+        string $document= NULL,
+        string $photo = NULL
     )
     {
         $this->id = $id;
@@ -115,24 +133,13 @@ class User
         $this->email = $email;
         $this->password = $password;
         $this->document = $document;
+        $this->photo = $photo;
     }
 
     /**
      * @return array|false
      */
-    public function findByCategory(int $idCategory)
-    {
-        $query = "SELECT * FROM shows WHERE idCategory = :idCategory";
-        $stmt = Connect::getInstance()->prepare($query);
-        $stmt->bindParam(":idCategory",$idCategory);
-        $stmt->execute();
-        if($stmt->rowCount() == 0){
-            return false;
-        } else {
-            return $stmt->fetchAll();
-        }
-    }
-    public function selectAll()
+    public function selectAll ()
     {
         $query = "SELECT * FROM users";
         $stmt = Connect::getInstance()->prepare($query);
@@ -144,6 +151,7 @@ class User
             return $stmt->fetchAll();
         }
     }
+
     /**
      * @return bool
      */
@@ -180,7 +188,7 @@ class User
             return false;
         }
     }
-    
+
     /**
      * @param string $email
      * @param string $password
@@ -192,36 +200,67 @@ class User
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
+
         if($stmt->rowCount() == 0){
-            $this->message = "Email e/ou Senha não cadastrados!";
+            $this->message = "Usuário e/ou Senha não cadastrados!";
             return false;
         } else {
             $user = $stmt->fetch();
             if(!password_verify($password, $user->password)){
-                $this->message = "Email e/ou Senha não cadastrados!";
+                $this->message = "Usuário e/ou Senha não cadastrados!";
                 return false;
             }
         }
-
+        $this->id = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->message = "Logado!";
+        $this->photo = $user->photo;
+        $this->message = "Usuário Autorizado, redirect to APP!";
+
+        $arrayUser = [
+            "id" => $this->id,
+            "name" => $this->name,
+            "email" => $this->email,
+            "photo" => $this->photo
+        ];
+
+        $_SESSION["user"] = $arrayUser;
+        setcookie("user","Logado",time()+60*60,"/");
         return true;
-        
     }
+
     /**
      * @return bool
      */
     public function insert() : bool
     {
-        $query = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+        $query = "INSERT INTO users (name, email, password) 
+                  VALUES (:name, :email, :password)";
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindValue(":password", password_hash($this->password,PASSWORD_DEFAULT));
         $stmt->execute();
-        $this->message = "Cadastrado!";
+        $this->message = "Usuário cadastrado com sucesso!";
         return true;
     }
 
+    public function update()
+    {
+        $query = "UPDATE users SET name = :name, email = :email, photo = :photo WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":name",$this->name);
+        $stmt->bindParam(":email",$this->email);
+        $stmt->bindParam(":photo",$this->photo);
+        $stmt->bindParam(":id",$this->id);
+        $stmt->execute();
+        $arrayUser = [
+            "id" => $this->id,
+            "name" => $this->name,
+            "email" => $this->email,
+            "photo" => $this->photo
+        ];
+        $_SESSION["user"] = $arrayUser;
+        $this->message = "Usuário alterado com sucesso!";
+    }
 }

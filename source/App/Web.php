@@ -47,6 +47,7 @@ class Web
         echo $this->view->render("contact");
     }
 
+
     public function error(array $data) : void
     {
 //      echo "<h1>Erro {$data["errcode"]}</h1>";

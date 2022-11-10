@@ -202,6 +202,7 @@ CREATE TABLE `users` (
                          `name` varchar(45) NOT NULL,
                          `email` varchar(45) NOT NULL,
                          `password` varchar(255) NOT NULL,
+                         `photo` varchar(255) DEFAULT NULL,
                          `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
                          `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
                          PRIMARY KEY (`id`),
@@ -215,7 +216,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Pedro','pedro@gmail.com','1234','2022-09-20 22:43:59',NULL);
+INSERT INTO `users` VALUES (1,'Pedro','pedro@gmail.com','1234', NULL,'2022-09-20 22:43:59',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

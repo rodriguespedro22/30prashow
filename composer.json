@@ -1,5 +1,5 @@
 {
-    "name": "pedrorodrigss/30prashow",
+    "name": "rodriguespedro22/30prashow",
     "description": "30prashow, venda de ingressos",
     "minimum-stability": "stable",
     "authors": [
@@ -24,7 +24,8 @@
     },
     "require": {
       "dompdf/dompdf": "^2.0",
-      "coffeecode/router": "1.0.8",
+      "coffeecode/router": "2.0.2",
+      "coffeecode/uploader": "2.0.3",
       "league/plates": "v3.4.0"
     }
   }
