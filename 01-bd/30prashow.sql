@@ -168,7 +168,7 @@ CREATE TABLE `shows` (
                            `name` varchar(100) NOT NULL,
                            `local` varchar(100) NOT NULL,
                            `image` varchar(300) NOT NULL,
-                           `idCategory` int(11) NOT NULL,
+                           `idCategory` int(11),
                            `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
                            `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
                             PRIMARY KEY (`id`)
@@ -187,6 +187,7 @@ INSERT INTO `shows` VALUES  (1,'20-05-2023', 'Show do Matue','Porto Alegre RS - 
                             (4,'09-04-2023', 'Show do Teto', 'Charqueadas - Tiradentes', 'https://d106p58duwuiz5.cloudfront.net/event/cover/595e6ca8ab9394fae1c8a58cca6b0726.jpg',2, '2022-09-20 18:39:23', NULL),
                             (5,'09-04-2023', 'Show do Teto', 'Charqueadas - Tiradentes', 'https://d106p58duwuiz5.cloudfront.net/event/cover/595e6ca8ab9394fae1c8a58cca6b0726.jpg',2, '2022-09-20 18:39:23', NULL),
                             (6,'09-04-2023', 'Show do Teto', 'Charqueadas - Tiradentes', 'https://d106p58duwuiz5.cloudfront.net/event/cover/595e6ca8ab9394fae1c8a58cca6b0726.jpg',2, '2022-09-20 18:39:23', NULL);
+                            -- (7,'11-11-2022', 'Show do Fabio', 'IFSul Campus Charqueadas', 'https://static.poder360.com.br/2021/07/ciro-vegeta.jpg',2, '2022-11-11 11:11:11', NULL);
 /*!40000 ALTER TABLE `shows` ENABLE KEYS */;
 UNLOCK TABLES;
 
