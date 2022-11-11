@@ -302,7 +302,9 @@
 
   <script src="<?= "assets/web/js/jquery-3.3.1.min.js"?>"></script>
   <script src="<?= "assets/web/js/popper.min.js"?>"></script>
-  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>
+  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>npm install semantic-ui --save
+cd semantic/
+gulp build
   <script src="<?= "assets/web/js/jquery.sticky.js"?>"></script>
   <script src="<?= "assets/web/js/main.js"?>"></script>
 </body>

@@ -60,6 +60,7 @@ $route->post("/cadastro","Web:cadastro");
 
 $route->group("/app"); 
 $route->get("/","App:home");
+
 $route->get("/sair","App:logout");
 
 /**

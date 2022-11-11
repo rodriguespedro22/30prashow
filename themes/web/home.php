@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?= url("assets/web/css/home.css")?>">
   <link rel="script" href="../../assets/web/scripts/script.js">
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <title>30prashow | Home</title>
 </head>
 
@@ -38,7 +39,7 @@
   </div>
 
   <!-- Boxes de contéudo -->
-
+  
   <!-- <div class="m-auto card-deck mt-5 mb-5 col-md-9"> -->
   <div class="m-auto col-10 row row-cols-1 row-cols-md-3 g-4 mt-4">
     

@@ -5,6 +5,7 @@ namespace Source\App;
 use League\Plates\Engine;
 // use Source\Models\Category;
 use Source\Models\User;
+use Source\Models\Show;
 use CoffeeCode\Uploader\Image;
 
 class App
@@ -31,10 +32,22 @@ class App
 
     public function home () : void
     {
-        echo "Olá, {$_SESSION["user"]["name"]}<br>";
-        echo "O ID: {$_SESSION["user"]["id"]}<br>";
-        echo "O email é : {$_SESSION["user"]["email"]}<br>";
-        echo $this->view->render("home");
+        $show = new Show();
+        $shows = $show->selectAll();
+
+        echo $this->view->render("home",
+            [
+                // "categories" => $this->categories,
+                "shows" => $shows
+            ]
+        );
+
+        // echo "Olá, {$_SESSION["user"]["name"]}<br>";
+        // echo "O ID: {$_SESSION["user"]["id"]}<br>";
+        // echo "O email é : {$_SESSION["user"]["email"]}<br>";
+        // echo $this->view->render("home");
+
+        
     }
 
     public function logout()
