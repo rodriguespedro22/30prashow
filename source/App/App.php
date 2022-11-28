@@ -10,6 +10,8 @@ use CoffeeCode\Uploader\Image;
 
 class App
 {
+    private $view;
+    
     public function __construct()
     {
         if(empty($_SESSION["user"]) || empty($_COOKIE["user"])){

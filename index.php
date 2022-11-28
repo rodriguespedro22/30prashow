@@ -4,7 +4,6 @@ ob_start();
 
 require __DIR__ . "/vendor/autoload.php";
 use CoffeeCode\Router\Router;
-// use Dompdf\Positioner\Absolute;
 
 $route = new Router(CONF_URL_BASE, ":");
 //$route = new Router('localhost/30prashow', ":"); // Route para localhost

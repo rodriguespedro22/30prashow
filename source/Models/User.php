@@ -263,4 +263,26 @@ class User
         $_SESSION["user"] = $arrayUser;
         $this->message = "Usuário alterado com sucesso!";
     }
+
+    public function getJSON() : string
+    {
+        return json_encode(
+            ["user" => [
+                "id" => $this->getId(),
+                "name" => $this->getName(),
+                "email" => $this->getEmail()
+            ]], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getArray() : array
+    {
+        return ["user" => [
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "email" => $this->getEmail(),
+            "photo" => $this->getPhoto()
+        ]];
+    }
+
+
 }
