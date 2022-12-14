@@ -12,7 +12,7 @@ $route->namespace("Source\App");
 
 $route->get("/user","Api:getUser");
 
-$route->get("/user/shows","Api:getShows");
+$route->get("/shows","Api:getShows");
 
 $route->get("/show/{id}","Api:getShow");
 

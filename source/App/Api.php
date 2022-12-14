@@ -44,9 +44,17 @@ class Api
     }
 
     public function getShows(){
-        
-        // echo json_encode($this->show->getArray(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+            $shows = new Show();
+            $show = [
+                "code" => 200,
+                "type" => "success",
+                "message" => "Shows encontrados:",
+                "show" => $shows->getAllShows()
+            ];
+            echo json_encode($show,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+    
     public function getShow()
     {
         // if(!empty($data)){
@@ -54,8 +62,8 @@ class Api
             $show = new Show();
             // $show = new Show(1);
             $show ->findById();
-            // echo $show->getJSON();
             echo json_encode($show->getArrayShows(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         // }
     }
+
 }

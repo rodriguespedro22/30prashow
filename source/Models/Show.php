@@ -93,13 +93,26 @@ class Show
 
     public function getArrayShows() : array
     {
-        return ["user" => [
+        return [
             "day" => $this->getDay(),
             "name" => $this->getName(),
             "local" => $this->getLocal(),
             "image" => $this->getImage()
-        ]];
+        ];
     }
+
+    public function getAllShows (){
+        $query = "SELECT * FROM shows";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->execute();
+
+        if($stmt->rowCount() == 0){
+            return false;
+        } else {
+            return $stmt->fetchAll();
+        }
+    }
+    
 	/**
 	 * @return mixed
 	 */
