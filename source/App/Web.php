@@ -4,6 +4,7 @@
 namespace Source\App;
 
 use League\Plates\Engine;
+use Source\Models\Category;
 use Source\Models\User;
 use Source\Models\Show;
 
@@ -12,11 +13,14 @@ header("Access-Control-Allow-Origin: *");
 class Web
 {
     private $view;
+    private $categories;
 
     public function __construct()
-    {
+    {   
+        // $categories = new Category();
+        // $this->categories = $categories->selectAll();
         $this->view = new Engine(CONF_VIEW_WEB,'php');
-        //$this->view = new Engine(__DIR__ . "/../../themes/web",'php');
+
     }
 
     public function home() : void

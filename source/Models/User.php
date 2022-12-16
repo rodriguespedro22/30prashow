@@ -10,8 +10,8 @@ class User
     private $name;
     private $email;
     private $password;
-    private $document;
     private $photo;
+    private $type;
 
     /**
      * @return string|null
@@ -103,37 +103,22 @@ class User
         $this->password = $password;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getDocument(): ?string
-    {
-        return $this->document;
-    }
-
-    /**
-     * @param string|null $document
-     */
-    public function setDocument(?string $document): void
-    {
-        $this->document = $document;
-    }
 
     public function __construct(
         int $id = NULL,
         string $name = NULL,
         string $email = NULL,
         string $password = NULL,
-        string $document= NULL,
-        string $photo = NULL
+        string $photo = NULL,
+        string $type = 'W'
     )
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->document = $document;
         $this->photo = $photo;
+        $this->type = $type;
     }
 
     /**
@@ -168,6 +153,7 @@ class User
             $user = $stmt->fetch();
             $this->name = $user->name;
             $this->email = $user->email;
+            $this->photo = $user->photo;
             return true;
         }
     }
@@ -234,14 +220,16 @@ class User
      */
     public function insert() : bool
     {
-        $query = "INSERT INTO users (name, email, password) 
-                  VALUES (:name, :email, :password)";
+        $query = "INSERT INTO users (name, email, password, type) VALUES (:name, :email, :password, :type)";
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":type",$this->type);
         $stmt->bindValue(":password", password_hash($this->password,PASSWORD_DEFAULT));
         $stmt->execute();
+        $this->id = Connect::getInstance()->lastInsertId();
         $this->message = "Usuário cadastrado com sucesso!";
+        $_SESSION["user"] = $this;
         return true;
     }
 
@@ -264,6 +252,7 @@ class User
         $this->message = "Usuário alterado com sucesso!";
     }
 
+
     public function getJSON() : string
     {
         return json_encode(
@@ -285,4 +274,20 @@ class User
     }
 
 
+
+	/**
+	 * @return mixed
+	 */
+	public function getType() {
+		return $this->type;
+	}
+	
+	/**
+	 * @param mixed $type 
+	 * @return self
+	 */
+	public function setType($type): self {
+		$this->type = $type;
+		return $this;
+	}
 }

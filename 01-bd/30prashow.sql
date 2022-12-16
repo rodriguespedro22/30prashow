@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE  IF NOT EXISTS `30prashow` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `30prashow`;
 -- MySQL dump 10.13  Distrib 5.7.38, for Win64 (x86_64)
@@ -16,66 +18,6 @@ USE `30prashow`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `addresses`
---
-
-DROP TABLE IF EXISTS `addresses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `addresses` (
-                             `id` int(11) NOT NULL AUTO_INCREMENT,
-                             `street` varchar(45) NOT NULL,
-                             `number` varchar(45) NOT NULL,
-                             `complement` varchar(45) NOT NULL,
-                             `city` varchar(45) NOT NULL,
-                             `state` varchar(45) NOT NULL,
-                             `zipCode` varchar(45) NOT NULL,
-                             `idUser` int(11) NOT NULL,
-                             `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-                             `udated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-                             PRIMARY KEY (`id`),
-                             KEY `fk_addresses_users_idx` (`idUser`),
-                             CONSTRAINT `fk_addresses_users` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `addresses`
---
-
-LOCK TABLES `addresses` WRITE;
-/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `authors`
---
-
-DROP TABLE IF EXISTS `authors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `authors` (
-                           `id` int(11) NOT NULL AUTO_INCREMENT,
-                           `school` varchar(255) NOT NULL,
-                           `idUser` int(11) NOT NULL,
-                           PRIMARY KEY (`id`),
-                           KEY `fk_authors_users1_idx` (`idUser`),
-                           CONSTRAINT `fk_authors_users1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `authors`
---
-
-LOCK TABLES `authors` WRITE;
-/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (1,'Charqueadas',2);
-/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `evaluates_show`
@@ -133,14 +75,17 @@ INSERT INTO `evaluators` VALUES (1,'lLink lattes',3);
 
 UNLOCK TABLES;
 
+--
+-- Table structure for table `singers-categories`
+--
 
 DROP TABLE IF EXISTS `singers-categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client*/;
 /*!40101 SET character_set_client = utf8*/;
 CREATE TABLE `singers-categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `singers` varchar(255) NOT NULL,
-PRIMARY KEY (`id`)
+                                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `singers` varchar(255) NOT NULL,
+                                      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client*/;
 --
@@ -171,9 +116,13 @@ CREATE TABLE `shows` (
                            `idCategory` int(11),
                            `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
                            `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-                            PRIMARY KEY (`id`)
+                            PRIMARY KEY (`id`),
+                            KEY `fk_shows_category1_idx` (`idCategory`),
+                            CONSTRAINT `fk_shows_category1` FOREIGN KEY (`idCategory`) REFERENCES `singers-categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
 
 --
 -- Dumping data for table `shows`
@@ -204,11 +153,12 @@ CREATE TABLE `users` (
                          `email` varchar(45) NOT NULL,
                          `password` varchar(255) NOT NULL,
                          `photo` varchar(255) DEFAULT NULL,
+                         `type` char(1) NOT NULL DEFAULT 'A' COMMENT 'Admin - Client',
                          `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
                          `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
                          PRIMARY KEY (`id`),
                          UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +167,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Pedro','pedro@gmail.com','1234', NULL,'2022-09-20 22:43:59',NULL);
+INSERT INTO `users` VALUES (1,'Pedro','pedro@gmail.com','1234', NULL,'w', '2022-09-20 22:43:59',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,10 +198,6 @@ LOCK TABLES `write_show` WRITE;
 /*!40000 ALTER TABLE `write_show` DISABLE KEYS */;
 /*!40000 ALTER TABLE `write_show` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database '30prashow'
---
 
 --
 -- Dumping routines for database '30prashow'

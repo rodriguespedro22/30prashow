@@ -83,11 +83,6 @@ class Show
                 "local" => $this->getLocal(),
                 "image" => $this->getImage(),
 
-                // private $day;
-                // private $name;
-                // private $local;
-                // private $image;
-
             ]], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
@@ -112,6 +107,42 @@ class Show
             return $stmt->fetchAll();
         }
     }
+    
+    public function updateShoww()
+    {
+        $query = "UPDATE shows SET name = :name, local = :local WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":name",$this->name);
+        $stmt->bindParam(":local",$this->local);
+        $stmt->bindParam(":id",$this->id);
+        $stmt->execute();
+        $arrayShow = [
+            "id" => $this->id,
+            "name" => $this->name,
+            "local" => $this->local
+        ];
+        // $_SESSION["show"] = $arrayShow;
+        // echo "Usuário alterado com sucesso!";
+    }
+    
+    // public function findByidUser(int $idUser)
+    // {
+    //     $query = "SELECT * 
+    //               FROM shows
+    //               JOIN write_shows ON shows.id = write_shows.idShow 
+    //               JOIN categories ON projects.idCategory = categories.id
+    //               WHERE write_projects.idUser = :idUser";
+    //     $stmt = Connect::getInstance()->prepare($query);
+    //     $stmt->bindParam(":idUser", $idUser);
+    //     $stmt->execute();
+
+    //     if($stmt->rowCount() == 0){
+    //         return false;
+    //     } else {
+    //         return $stmt->fetchAll();
+    //     }
+
+    // }
     
 	/**
 	 * @return mixed
@@ -191,5 +222,12 @@ class Show
 	public function setDay($day): self {
 		$this->day = $day;
 		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getId() {
+		return $this->id;
 	}
 }
