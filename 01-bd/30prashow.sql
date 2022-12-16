@@ -172,33 +172,56 @@ INSERT INTO `users` VALUES (1,'Pedro','pedro@gmail.com','1234', NULL,'w', '2022-
 UNLOCK TABLES;
 
 --
--- Table structure for table `write_show`
+-- Table structure for table `buy_ticket`
 --
 
-DROP TABLE IF EXISTS `write_show`;
+DROP TABLE IF EXISTS `buy_ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `write_show` (
+CREATE TABLE `buy_ticket` (
                                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                                 `idAuthors` int(11) NOT NULL,
-                                 `idShows` int(11) NOT NULL,
+                                 `idClient` int(11) NOT NULL,
+                                 `idTicket` int(11) NOT NULL,
                                  PRIMARY KEY (`id`),
-                                 KEY `fk_authors_has_shows_shows1_idx` (`idShows`),
-                                 KEY `fk_authors_has_shows_authors1_idx` (`idAuthors`),
-                                 CONSTRAINT `fk_authors_has_shows_authors1` FOREIGN KEY (`idAuthors`) REFERENCES `authors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-                                 CONSTRAINT `fk_authors_has_shows_shows1` FOREIGN KEY (`idShows`) REFERENCES `shows` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+                                 KEY `fk_clients_has_shows_shows1_idx` (`idTicket`),
+                                 KEY `fk_clients_has_shows_clients1_idx` (`idClient`),
+                                 CONSTRAINT `fk_clients_has_shows_clients1` FOREIGN KEY (`idClient`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                                 CONSTRAINT `fk_clients_has_shows_shows1` FOREIGN KEY (`idTicket`) REFERENCES `ticket_show` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `write_show`
+-- Dumping data for table `buy_ticket`
 --
 
-LOCK TABLES `write_show` WRITE;
-/*!40000 ALTER TABLE `write_show` DISABLE KEYS */;
-/*!40000 ALTER TABLE `write_show` ENABLE KEYS */;
+LOCK TABLES `buy_ticket` WRITE;
+/*!40000 ALTER TABLE `buy_ticket` DISABLE KEYS */;
+/*!40000 ALTER TABLE `buy_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+
+DROP TABLE IF EXISTS `ticket_show`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ticket_show` (
+                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                 `price` int(200) NOT NULL,
+                                 `idShow` int(11) NOT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `fk_shows_shows1_idx` (`idShow`),
+                                 CONSTRAINT `fk_shows_shows1` FOREIGN KEY (`idShow`) REFERENCES `shows` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ticket_show`
+--
+
+LOCK TABLES `ticket_show` WRITE;
+/*!40000 ALTER TABLE `ticket_show` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ticket_show` ENABLE KEYS */;
+UNLOCK TABLES;
 --
 -- Dumping routines for database '30prashow'
 --
