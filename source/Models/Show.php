@@ -13,6 +13,8 @@ class Show
     private $image;
     private $idCategory;
 
+    private $message;
+
 
     public function __construct(
         int $id = null,
@@ -20,7 +22,8 @@ class Show
         string $name = null,
         string $local = null,
         string $image = null,
-        int $idCategory = null
+        int $idCategory = null,
+        string $message = null
         )
     {
         $this->id = $id;
@@ -29,6 +32,8 @@ class Show
         $this->local = $local;
         $this->image = $image;
         $this->idCategory = $idCategory;
+        $this->message = $message;
+
     }
 
     public function selectAll()
@@ -42,6 +47,23 @@ class Show
         } else {
             return $stmt->fetchAll();
         }
+    }
+
+    public function insert() : bool
+    {
+        $query = "INSERT INTO shows (day, name, local, image, idCategory) 
+        VALUES (:day, :name, :local, :image, :idCategory)";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":day", $this->day);
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":local", $this->local);
+        $stmt->bindParam(":image", $this->image);
+        $stmt->bindParam(":idCategory", $this->idCategory);
+        $stmt->execute();
+        $this->id = Connect::getInstance()->lastInsertId(); // armazena o id do show incluido
+        $this->message = "Show cadastrado!";
+        // $_SESSION["work"] = $this->image;
+        return true;
     }
 
     public function findByCategory(int $idCategory)
@@ -73,6 +95,23 @@ class Show
             $this->idCategory = $show->idCategory;
             return true;
         }
+    }
+    public function getById(?int $id)
+    {
+        $query = "SELECT * FROM shows WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $idQuery = "";
+        if (empty($id)) {
+            $idQuery = $this->id;
+        } else {
+            $idQuery = $id;
+        }
+        $stmt->bindParam(":id", $idQuery);
+        $stmt->execute();
+        if($stmt->rowCount() == 0){
+            return false;
+        }
+        return $stmt->fetch();
     }
     public function getJSON() : string
     {
@@ -121,6 +160,7 @@ class Show
             "name" => $this->name,
             "local" => $this->local
         ];
+        $this->message = "Show alterado!";
         // $_SESSION["show"] = $arrayShow;
         // echo "Usuário alterado com sucesso!";
     }
@@ -160,6 +200,21 @@ class Show
 		return $this;
 	}
 
+    /**
+	 * @return mixed
+	 */
+	public function getMessage() {
+		return $this->message;
+	}
+	
+	/**
+	 * @param mixed $message 
+	 * @return self
+	 */
+	public function setMessage($message): self {
+		$this->message = $message;
+		return $this;
+	}
 	/**
 	 * @return mixed
 	 */

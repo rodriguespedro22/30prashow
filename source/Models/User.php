@@ -12,7 +12,7 @@ class User
     private $password;
     private $photo;
     private $type;
-
+    private $message;
     /**
      * @return string|null
      */
@@ -28,7 +28,7 @@ class User
     {
         $this->photo = $photo;
     }
-    private $message;
+    
 
     /**
      * @return mixed
@@ -110,7 +110,7 @@ class User
         string $email = NULL,
         string $password = NULL,
         string $photo = NULL,
-        string $type = 'W'
+        string $type = 'C'
     )
     {
         $this->id = $id;
@@ -150,14 +150,30 @@ class User
         if($stmt->rowCount() == 0){
             return false;
         } else {
-            $user = $stmt->fetch();
-            $this->name = $user->name;
-            $this->email = $user->email;
-            $this->photo = $user->photo;
-            return true;
+            return $stmt->fetch();
+            // $this->name = $user->name;
+            // $this->email = $user->email;
+            // $this->photo = $user->photo;
+            // return true;
         }
     }
-
+    public function getById(?int $id)
+    {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $idQuery = "";
+        if (empty($id)) {
+            $idQuery = $this->id;
+        } else {
+            $idQuery = $id;
+        }
+        $stmt->bindParam(":id", $idQuery);
+        $stmt->execute();
+        if($stmt->rowCount() == 0){
+            return false;
+        }
+        return $stmt->fetch();
+    }
     /**
      * @param string $email
      * @return bool
@@ -273,7 +289,7 @@ class User
         ]];
     }
 
-
+    
 
 	/**
 	 * @return mixed

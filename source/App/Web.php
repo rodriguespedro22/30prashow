@@ -7,6 +7,7 @@ use League\Plates\Engine;
 use Source\Models\Category;
 use Source\Models\User;
 use Source\Models\Show;
+use Source\Models\Admin;
 
 header("Access-Control-Allow-Origin: *");
 
@@ -17,10 +18,16 @@ class Web
 
     public function __construct()
     {   
-        // $categories = new Category();
-        // $this->categories = $categories->selectAll();
+        $categories = new Category();
+        $this->categories = $categories->selectAll();
+
         $this->view = new Engine(CONF_VIEW_WEB,'php');
 
+        if(!empty($_SESSION["user"]) || !empty($_COOKIE["user"])){
+            header("Location:app");
+        }
+
+        
     }
 
     public function home() : void
@@ -30,12 +37,25 @@ class Web
 
         echo $this->view->render("home",
             [
-                // "categories" => $this->categories,
+                "categories" => $this->categories,
                 "shows" => $shows
             ]
         );
     }
 
+    // public function shows(?array $data) : void
+    // {
+    //     if(!empty($data)){
+    //         $show = new Show();
+    //         $shows = $show->findByCategory($data["idCategory"]);
+    //     }
+    //     echo $this->view->render(
+    //         "works",[
+    //             "categories" => $this->categories,
+    //             "shows" => $shows
+    //         ]
+    //     );
+    // }
     public function about() : void
     {
         echo $this->view->render(
@@ -150,11 +170,22 @@ class Web
             }
 
             $user = new User();
+            $adm = new Admin();
 
-            if(!$user->validate($data["email"],$data["password"])){
+
+            if(!$user->validate($data["email"], $data["password"]) && !$adm->validate($data["email"], $data["password"])) {
                 $json = [
-                    "message" => $user->getMessage(),
-                    "type" => "error"
+                "message" => "Usuário e/ou senha inválidos",
+                "type" => "warning"
+                ];
+                echo json_encode($json);
+                return;
+            }
+
+            if($adm->validate($data["email"], $data["password"])) {
+                $json = [
+                    "message" => "Administração disponível",
+                    "type" => "admin"
                 ];
                 echo json_encode($json);
                 return;

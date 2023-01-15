@@ -11,9 +11,12 @@ use CoffeeCode\Uploader\Image;
 class App
 {
     private $view;
-    
+    private $categories;
     public function __construct()
     {
+        $categories = new Category();
+        $this->categories = $categories->selectAll();
+
         if(empty($_SESSION["user"]) || empty($_COOKIE["user"])){
             header("Location:http://www.localhost/30prashow/login");
         }
@@ -39,7 +42,7 @@ class App
 
         echo $this->view->render("home",
             [
-                // "categories" => $this->categories,
+                "categories" => $this->categories,
                 "shows" => $shows
             ]
         );
@@ -51,7 +54,25 @@ class App
 
         
     }
+    // public function showFind(){
+    //     $show = new Show();
+    //     $shows = $show->findById();
 
+    //     echo $this->view->render("show",[
+    //             "categories" => $this->categories,
+    //             "shows" => $shows
+    //         ]
+    //     );
+    // }
+
+    public function showFind(){
+        $show = new Show();
+
+        echo $this->view->render("show",[
+            "show" => $show->getById($_GET["id"]),
+            "categories" => $this->categories
+        ]);
+    }
     public function logout()
     {
         session_destroy();
@@ -61,6 +82,8 @@ class App
 
     public function profile(array $data) : void
     {
+        // $user = new User($_SESSION["user"]["id"]);
+        // $user->findById();
         echo $this->view->render("profile",
             [
                 "user" => $_SESSION["user"]
@@ -91,17 +114,16 @@ class App
             // se a imagem for alterada, manda a do formulário $_FILES
             if(!empty($_FILES['photo']['tmp_name'])) {
                 $upload = uploadImage($_FILES['photo']);
-                unlink($_SESSION["user"]["photo"]);
+                // unlink($_SESSION["user"]["photo"]);
             } else {
                 // se não houve alteração da imagem, manda a imagem que está na sessão
-                $upload = $_SESSION["user"]["photo"];
+                $upload = $_SESSION["user"]["photo"] ? : NULL;
             }
 
             $user = new User(
                 $_SESSION["user"]["id"],
                 $data["name"],
                 $data["email"],
-                null,
                 null,
                 $upload
             );
@@ -111,7 +133,7 @@ class App
                 "type" => "alert-success",
                 "name" => $user->getName(),
                 "email" => $user->getEmail(),
-                "photo" => url($user->getPhoto())
+                "photo" => $user->getPhoto() ? url($user->getPhoto()) : NULL
             ];
             echo json_encode($json);
         }

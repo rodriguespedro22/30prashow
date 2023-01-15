@@ -54,11 +54,15 @@ $route->get("/cadastro","Web:cadastro");
 $route->post("/cadastro","Web:cadastro");
 
 /**
- * App Routs
+ * App Routes
  */
 
 $route->group("/app"); 
 $route->get("/","App:home");
+
+$route->get("/ingressos","App:tickets");
+
+$route->get("/show/{idShow}", "App:showFind");
 
 $route->get("/sair","App:logout");
 
@@ -69,12 +73,29 @@ $route->get("/perfil","App:profile");
 $route->post("/perfil","App:profileUpdate"); 
 
 
-$route->get("/listar","App:list");
-$route->get("/pdf","App:createPDF");
+
 $route->group(null); // desagrupo do /app
 
+// Admin Routes
 $route->group("/admin"); // agrupa em /admin
 $route->get("/","Adm:home");
+
+$route->get("/listar","App:list");
+$route->get("/pdf","App:createPDF");
+
+$route->get("/cadastrarshow","Adm:registerShow");
+$route->post("/cadastrarshow","Adm:registerShow");
+
+$route->get("/usuarios","Adm:users");
+
+$route->get("/editaruser/{idUser}","Adm:editUser");
+$route->post("/editaruser/{idUser}","Adm:updateUser");
+
+$route->get("/editarshow/{idShow}", "Adm:editShow");
+$route->post("/editarshow/{idShow}", "Adm:updateShow");
+
+$route->get("/sair","Adm:logout");
+
 $route->group(null); // desagrupo do /admin
 
 /*

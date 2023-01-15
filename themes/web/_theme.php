@@ -66,30 +66,42 @@
     <div class="container">
       <div class="row align-items-center position-relative">
 
-        <div class="col-3">
+        <div class="col-6">
           <div class="site-logo">
           <a href="http://www.localhost/30prashow/" class="font-weight-bold text-white prashow">30PRASHOW</a>
           </div>
         </div>
 
-        <div class="col-9  text-right">
+        <div class="col-2">
+          <div class="site-logo left">
+          <a href="http://www.localhost/30prashow/login" class="font-weight-bold text-white prashow">Login</a>
+          </div>
+        </div>
+
+        <div class="col-1">
+          <div class="site-logo left">
+          <a href="http://www.localhost/30prashow/cadastro" class="font-weight-bold text-white prashow">CADASTRO</a>
+          </div>
+        </div>
+
+         <!-- <div class="col-9  text-right"></div>  -->
 
 
-          <span class="d-inline-block d-lg-block"><a href="#"
+          <!-- <span class="d-inline-block d-lg-block text-right ml-auto d-none" ><a href="#"
               class="text-black site-menu-toggle js-menu-toggle py-5"><span
-                class="icon-menu h3 text-white"></span></a></span>
+                class="icon-menu h3 text-white"></span></a></span>  -->
 
 
 
-          <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
+          <!-- <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto ">
               <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
               <li><a href="login" class="nav-link text-white">Faça o login</a></li>
               <li><a href="cadastro" class="nav-link text-white">Faça seu cadastro</a></li>
               <li><a href="contato" class="nav-link text-white">Contato</a></li>
             </ul>
-          </nav>
-        </div>
+          </nav> -->
+        <!-- </div>  -->
 
 
       </div>
@@ -302,9 +314,7 @@
 
   <script src="<?= "assets/web/js/jquery-3.3.1.min.js"?>"></script>
   <script src="<?= "assets/web/js/popper.min.js"?>"></script>
-  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>npm install semantic-ui --save
-cd semantic/
-gulp build
+  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>
   <script src="<?= "assets/web/js/jquery.sticky.js"?>"></script>
   <script src="<?= "assets/web/js/main.js"?>"></script>
 </body>

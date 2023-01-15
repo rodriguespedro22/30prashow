@@ -18,7 +18,7 @@ $route->get("/user/{id}","Api:getUser");
 
 // GET ROUTES SHOW
 
-$route->get("/shows","Api:getShows");
+$route->get("/user/shows","Api:getShows");
 
 $route->get("/show/{idShow}","Api:getShow");
 

@@ -1,0 +1,15 @@
+.site-navbar{
+    position:relative !important;
+}
+
+.site-navbar .site-logo a{
+    color: black !important;
+}
+
+.site-mobile-menu {
+    background-color:black;
+}
+
+.text-white{
+    color:black !important;
+}

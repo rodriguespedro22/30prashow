@@ -21,7 +21,7 @@ class Category
 
     public function selectAll()
     {
-        $query = "SELECT * FROM singer-categories";
+        $query = "SELECT * FROM categories";
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->execute();
 

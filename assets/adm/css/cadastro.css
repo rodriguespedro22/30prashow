@@ -1,0 +1,100 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Open+Sans:wght@700&family=Smooch+Sans:wght@800&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap');
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-image {
+    background-image: url("../images/backgroundlogin.jpg");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+.container{
+    max-width: 850px;
+    box-shadow: 0 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+.container .imgCadastro .text{
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container .formularioLogin .formularioInput{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    margin: 10px 0;
+    position: relative;
+}
+.container .formularioLogin .formularioInput input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding: 0 30px;
+    font-size: 16px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+.button{
+    background-color: black;
+    cursor: pointer;
+}
+.container .formularioLogin .formularioInput input[type="submit"]{
+    color: #fff;
+    border-radius: 5px;
+}
+.container .formularioLogin .formularioInput i{
+    position: absolute;
+    font-size: 17px;
+}
+.container .formularioLogin .esqueceuSenha a{
+    text-decoration: none;
+}
+.container .formularioLogin{
+    text-align: center;
+    margin: 10px;
+    font-size: 18px;
+}
+.container .formularioLogin .redesSociais{
+    text-align: center;
+}
+.container .formularioLogin .redesSociais i{
+    margin: 10px;
+    font-size: 30px;
+}
+.container .formularioLogin .criarConta a{
+    text-decoration: none;
+}
+.container a{
+    color: #a77f6c;
+}
+
+.imgCadastro {
+    /* width: 58%; */
+    /* margin-top: px; */
+    max-height: 415px;
+}
+.imgCadastro img{
+    max-height: 330px;
+    margin-top: 4px;
+    /* margin-bottom: 20px; */
+    margin-left: 80px;
+}
+body .formularioInput #toggler {
+    cursor: pointer;
+}

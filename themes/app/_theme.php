@@ -6,28 +6,28 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="<?= url("assets/web/css/home.css")?>">
-  <title>30prashow - Home</title>
+  <link rel="stylesheet" href="<?= url("assets/app/css/home.css")?>">
+  <title>30prashow</title>
   <!-- PLUGINS CSS STYLE -->
   <!-- Bootstrap -->
   
-  <link href="<?= url("assets/web/"); ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?= url("assets/app/"); ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
-  <link href="<?= url("assets/web/"); ?>plugins/font-awsome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?= url("assets/app/"); ?>plugins/font-awsome/css/font-awesome.min.css" rel="stylesheet">
   <!-- Magnific Popup -->
-  <link href="<?= url("assets/web/"); ?>plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+  <link href="<?= url("assets/app/"); ?>plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
   <!-- Slick Carousel -->
-  <link href="<?= url("assets/web/"); ?>plugins/slick/slick.css" rel="stylesheet">
-  <link href="<?= url("assets/web/"); ?>plugins/slick/slick-theme.css" rel="stylesheet">
+  <link href="<?= url("assets/app/"); ?>plugins/slick/slick.css" rel="stylesheet">
+  <link href="<?= url("assets/app/"); ?>plugins/slick/slick-theme.css" rel="stylesheet">
   <!-- CUSTOM CSS -->
-  <link rel="icon" href="<?= url("assets/web/images/30.jpg")?>">
+  <link rel="icon" href="<?= url("assets/app/images/30.jpg")?>">
   
-  <link rel="stylesheet" href="<?= url("assets/web/fonts/icomoon/style.css")?>">
-  <link rel="stylesheet" href="<?= url("assets/web/css/bootstrap.min.css")?>">
-  <link rel="stylesheet" href="<?= url("assets/web/css/style.css")?>">
+  <link rel="stylesheet" href="<?= url("assets/app/fonts/icomoon/style.css")?>">
+  <link rel="stylesheet" href="<?= url("assets/app/css/bootstrap.min.css")?>">
+  <link rel="stylesheet" href="<?= url("assets/app/css/style.css")?>">
 
   <!-- FAVICON -->
-  <link href="<?= url("assets/web/"); ?>images/favicon.png" rel="shortcut icon">
+  <link href="<?= url("assets/app/"); ?>images/favicon.png" rel="shortcut icon">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
   </script>
@@ -55,6 +55,53 @@
   <!--========================================
 =            Navigation Section            =
 =========================================-->
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+
+
+  <header class="site-navbar site-navbar-target py-4" role="banner">
+
+    <div class="container">
+      <div class="row align-items-center position-relative">
+
+        <div class="col-3">
+          <div class="site-logo">
+          <a href="<?= url("app"); ?>" class="font-weight-bold text-white prashow">30PRASHOW</a>
+          </div>
+        </div>
+
+        <div class="col-9  text-right">
+
+
+          <span class="d-inline-block d-lg-block"><a href="#"
+              class="text-black site-menu-toggle js-menu-toggle py-5"><span
+                class="icon-menu h3 text-white"></span></a></span>
+
+
+
+          <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav ml-auto ">
+              <li><a href="<?= url("app/perfil"); ?>" class="nav-link text-white">Perfil</a></li>
+              <li><a href="sobre" class="nav-link text-white">Meus ingressos</a></li>
+              <li><a href="contato" class="nav-link text-white">Contato</a></li>
+              <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
+              <li><a href="<?= url("app/sair"); ?>" class="nav-link text-white">Logout</a></li>
+            </ul>
+          </nav>
+        </div>
+
+
+      </div>
+    </div>
+
+  </header>
   
   <?php echo $this->section("content"); ?>
 
@@ -238,32 +285,32 @@
   </script>
   <!-- JAVASCRIPTS -->
   <!-- jQuey -->
-  <script src="<?= url("assets/web/"); ?>plugins/jquery/jquery.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/jquery/jquery.js"></script>
   <!-- Popper js -->
-  <script src="<?= url("assets/web/"); ?>plugins/popper/popper.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/popper/popper.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="<?= url("assets/web/"); ?>plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/bootstrap/js/bootstrap.min.js"></script>
   <!-- Smooth Scroll -->
-  <script src="<?= url("assets/web/"); ?>plugins/smoothscroll/SmoothScroll.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/smoothscroll/SmoothScroll.min.js"></script>
   <!-- Isotope -->
-  <script src="<?= url("assets/web/"); ?>plugins/isotope/mixitup.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/isotope/mixitup.min.js"></script>
   <!-- Magnific Popup -->
-  <script src="<?= url("assets/web/"); ?>plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
   <!-- Slick Carousel -->
-  <script src="<?= url("assets/web/"); ?>plugins/slick/slick.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/slick/slick.min.js"></script>
   <!-- SyoTimer -->
-  <script src="<?= url("assets/web/"); ?>plugins/syotimer/jquery.syotimer.min.js"></script>
+  <script src="stickyplugins/syotimer/jquery.syotimer.min.js"></script>
   <!-- Google Mapl -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
-  <script type="text/javascript" src="<?= url("assets/web/"); ?>plugins/google-map/gmap.js"></script>
+  <script type="text/javascript" src="<?= url("assets/app/"); ?>plugins/google-map/gmap.js"></script>
   <!-- Custom Script -->
-  <script src="<?= url("assets/web/"); ?>js/custom.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/custom.js"></script>
 
-  <script src="<?= "assets/web/js/jquery-3.3.1.min.js"?>"></script>
-  <script src="<?= "assets/web/js/popper.min.js"?>"></script>
-  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>
-  <script src="<?= "assets/web/js/jquery.sticky.js"?>"></script>
-  <script src="<?= "assets/web/js/main.js"?>"></script>
+  <script src="<?= url("assets/app/"); ?>js/jquery-3.3.1.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/popper.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/bootstrap.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/jquery.sticky.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/main.js"></script>
 </body>
 
 </html>

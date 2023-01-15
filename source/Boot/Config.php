@@ -18,7 +18,7 @@ define("CONF_URL_TEST", "http://www.localhost/30prashow"); // depois da / deve v
 
 define("CONF_VIEW_WEB", __DIR__ . "/../../themes/web");
 define("CONF_VIEW_APP", __DIR__ . "/../../themes/app");
-define("CONF_VIEW_ADMIN", __DIR__ . "/../../themes/admin");
+define("CONF_VIEW_ADMIN", __DIR__ . "/../../themes/adm");
 
 // SITE
 

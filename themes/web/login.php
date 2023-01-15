@@ -79,7 +79,9 @@
                             message.classList.add(`${user.type}`);
                             if (user.type == "success") {
                                 window.location.href = "<?= url("app"); ?>";
-                            }
+                            }else if (user.type == "admin") {
+                            window.location.href = "<?= url("admin"); ?>";
+            }
                         }
                     });
                 </script>
