@@ -51,8 +51,7 @@ class Show
 
     public function insert() : bool
     {
-        $query = "INSERT INTO shows (day, name, local, image, idCategory) 
-        VALUES (:day, :name, :local, :image, :idCategory)";
+        $query = "INSERT INTO shows (day, name, local, image, idCategory) VALUES (:day, :name, :local, :image, :idCategory)";
         $stmt = Connect::getInstance()->prepare($query);
         $stmt->bindParam(":day", $this->day);
         $stmt->bindParam(":name", $this->name);
@@ -135,6 +134,15 @@ class Show
         ];
     }
 
+    public function delete()
+    {
+        $query = "DELETE FROM shows WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        return true;
+    }
+
     public function getAllShows (){
         $query = "SELECT * FROM shows";
         $stmt = Connect::getInstance()->prepare($query);
@@ -149,16 +157,20 @@ class Show
     
     public function updateShoww()
     {
-        $query = "UPDATE shows SET name = :name, local = :local WHERE id = :id";
+        $query = "UPDATE shows SET day = :day, name = :name, local = :local, image = :image WHERE id = :id";
         $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":day",$this->day);
         $stmt->bindParam(":name",$this->name);
         $stmt->bindParam(":local",$this->local);
+        $stmt->bindParam(":image",$this->image);
         $stmt->bindParam(":id",$this->id);
         $stmt->execute();
         $arrayShow = [
             "id" => $this->id,
+            "day" => $this->day,
             "name" => $this->name,
-            "local" => $this->local
+            "local" => $this->local,
+            "image" => $this->image
         ];
         $this->message = "Show alterado!";
         // $_SESSION["show"] = $arrayShow;
@@ -284,5 +296,13 @@ class Show
 	 */
 	public function getId() {
 		return $this->id;
+	}
+    /**
+	 * @param mixed $id
+	 * @return self
+	 */
+	public function setId($id): self {
+		$this->id = $id;
+		return $this;
 	}
 }

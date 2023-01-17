@@ -34,6 +34,9 @@ $route->put("/show/{idShow}/name/{name}/local/{local}","Api:updateShow");
 
 $route->post("/user/type/{type}/name/{name}/email/{email}/password/{password}", "Api:createUser");
 
+$route->post("/user/comprarshow/id/{idShow}", "Api:buyShow");
+// $route->post("/comprarshow/{idShow}", "App:buyShow");
+
 $route->dispatch();
 
 

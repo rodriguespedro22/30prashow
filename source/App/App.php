@@ -1,11 +1,13 @@
 <?php
 
+
 namespace Source\App;
 
 use League\Plates\Engine;
 use Source\Models\Category;
 use Source\Models\User;
 use Source\Models\Show;
+use Source\Models\Buy;
 use CoffeeCode\Uploader\Image;
 
 class App
@@ -17,20 +19,15 @@ class App
         $categories = new Category();
         $this->categories = $categories->selectAll();
 
-        if(empty($_SESSION["user"]) || empty($_COOKIE["user"])){
-            header("Location:http://www.localhost/30prashow/login");
-        }
+        // if(empty($_SESSION["user"]) || empty($_COOKIE["user"])){
+        //     header("Location:http://www.localhost/30prashow/login");
+        // }
 
         $this->view = new Engine(CONF_VIEW_APP,'php');
     }
     public function list () : void 
     {
         require __DIR__ . "/../../themes/app/list.php";
-    }
-
-    public function createPDF () : void
-    {
-       require __DIR__ . "/../../themes/app/create-pdf.php";
     }
 
    
@@ -73,6 +70,40 @@ class App
             "categories" => $this->categories
         ]);
     }
+    public function shows(?array $data) : void
+    {
+        if(!empty($data)){
+            $show = new Show();
+            $shows = $show->findByCategory($data["idCategory"]);
+        }
+        echo $this->view->render(
+            "shows",[
+                "categories" => $this->categories,
+                "shows" => $shows
+            ]
+        );
+    }
+
+
+    public function buyShow(array $data)
+    {           
+        $show = new Show();
+        if (!empty($data)) {
+
+
+            $buyShow = new Buy(
+                null,
+                $data[$_SESSION["user"]["id"]],
+                $data[$show->getById($_GET["id"])]
+
+            );
+
+            $buyShow->insert();
+            // header("Location:http://www.localhost/30prashow/app/");
+        } 
+        
+    }
+    
     public function logout()
     {
         session_destroy();
@@ -111,12 +142,9 @@ class App
                 echo json_encode($json);
                 return;
             }
-            // se a imagem for alterada, manda a do formulário $_FILES
             if(!empty($_FILES['photo']['tmp_name'])) {
                 $upload = uploadImage($_FILES['photo']);
-                // unlink($_SESSION["user"]["photo"]);
             } else {
-                // se não houve alteração da imagem, manda a imagem que está na sessão
                 $upload = $_SESSION["user"]["photo"] ? : NULL;
             }
 

@@ -39,7 +39,23 @@
   </div>
 
   <!-- Boxes de contéudo -->
-
+          <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categorias
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                        <?php
+                        foreach ($categories as $category){
+                        ?>
+                        <li>
+                          <a class="dropdown-item" href="<?= url("app/shows/{$category->id}"); ?>">
+                          <?= $category->singers; ?></a>
+                        </li>
+                        <?php
+                        }
+                        ?>
+              </ul>
+            </div>
 <div class="m-auto col-10 row row-cols-1 row-cols-md-3 g-4 mt-4">
     
     <?php
@@ -78,7 +94,6 @@
       }
     ?>
 </div>
-  <!-- </div> -->
 
 
 </body>

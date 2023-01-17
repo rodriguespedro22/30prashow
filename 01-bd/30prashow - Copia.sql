@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS `addresses` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `buy_show`
+-- Estrutura da tabela `buy_ticket`
 --
 
-DROP TABLE IF EXISTS `buy_show`;
-CREATE TABLE IF NOT EXISTS `buy_show` (
+DROP TABLE IF EXISTS `buy_ticket`;
+CREATE TABLE IF NOT EXISTS `buy_ticket` (
   `id` int NOT NULL AUTO_INCREMENT,
   `idClient` int NOT NULL,
-  `idShow` int NOT NULL,
+  `idTicket` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_clients_has_shows_shows1_idx` (`idShow`),
+  KEY `fk_clients_has_shows_shows1_idx` (`idTicket`),
   KEY `fk_clients_has_shows_clients1_idx` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -137,6 +137,21 @@ INSERT INTO `categories` (`id`, `singers`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `ticket_show`
+--
+
+DROP TABLE IF EXISTS `ticket_show`;
+CREATE TABLE IF NOT EXISTS `ticket_show` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `price` int NOT NULL,
+  `idShow` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_shows_shows1_idx` (`idShow`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `users`
 --
 
@@ -174,11 +189,11 @@ ALTER TABLE `addresses`
   ADD CONSTRAINT `fk_addresses_shows` FOREIGN KEY (`idShow`) REFERENCES `shows` (`id`);
 
 --
--- Limitadores para a tabela `buy_show`
+-- Limitadores para a tabela `buy_ticket`
 --
-ALTER TABLE `buy_show`
+ALTER TABLE `buy_ticket`
   ADD CONSTRAINT `fk_clients_has_shows_clients1` FOREIGN KEY (`idClient`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_clients_has_shows_shows1` FOREIGN KEY (`idShow`) REFERENCES `shows` (`id`);
+  ADD CONSTRAINT `fk_clients_has_shows_shows1` FOREIGN KEY (`idTicket`) REFERENCES `ticket_show` (`id`);
 
 --
 -- Limitadores para a tabela `shows`
@@ -186,6 +201,12 @@ ALTER TABLE `buy_show`
 ALTER TABLE `shows`
   ADD CONSTRAINT `fk_shows_category1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`id`);
 
+--
+-- Limitadores para a tabela `ticket_show`
+--
+ALTER TABLE `ticket_show`
+  ADD CONSTRAINT `fk_shows_shows1` FOREIGN KEY (`idShow`) REFERENCES `shows` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

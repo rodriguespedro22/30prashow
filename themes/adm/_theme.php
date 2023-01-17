@@ -25,16 +25,15 @@ header("Access-Control-Allow-Origin: *");
   <link href="<?= url("assets/app/"); ?>plugins/slick/slick-theme.css" rel="stylesheet">
   <!-- CUSTOM CSS -->
   <link rel="icon" href="<?= url("assets/app/images/30.jpg")?>">
-  
   <link rel="stylesheet" href="<?= url("assets/app/fonts/icomoon/style.css")?>">
-  <link rel="stylesheet" href="<?= url("assets/app/css/bootstrap.min.css")?>">
   <link rel="stylesheet" href="<?= url("assets/app/css/style.css")?>">
+
+  <!-- <link rel="stylesheet" href="<?= url("assets/app/css/bootstrap.min.css")?>"> -->
+
 
   <!-- FAVICON -->
   <link href="<?= url("assets/app/"); ?>images/favicon.png" rel="shortcut icon">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-  </script>
+ 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
@@ -77,7 +76,7 @@ header("Access-Control-Allow-Origin: *");
 
         <div class="col-3">
           <div class="site-logo">
-          <a href="<?= url("app"); ?>" class="font-weight-bold text-white prashow">30PRASHOW</a>
+          <a href="<?= url("admin"); ?>" class="font-weight-bold text-white prashow">30PRASHOW</a>
           </div>
         </div>
 
@@ -95,7 +94,7 @@ header("Access-Control-Allow-Origin: *");
               <li><a href=<?= url("admin/"); ?> class="nav-link text-white">Lista de shows</a></li>
               <li><a href="<?= url("admin/cadastrarshow"); ?>" class="nav-link text-white">Registrar novo show</a></li>
               <li><a href="<?= url("admin/usuarios"); ?>" class="nav-link text-white">Lista de usuários</a></li>
-              <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
+              <!-- <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li> -->
               <li><a href="<?= url("admin/sair"); ?>" class="nav-link text-white">Logout</a></li>
             </ul>
           </nav>
@@ -124,24 +123,15 @@ header("Access-Control-Allow-Origin: *");
           </div>
         </div>
       </div>
-    <!-- Grid container -->
     <div class="container p-4">
+
       <!-- Section: Social media -->
       <section class="mb-4">
         <!-- Facebook -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/pedro.rodriguesdacunha.35/" role="button"><i class="fab fa-facebook-f"></i></a>
 
-        <!-- Twitter -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rodriguespedro22" role="button"><i class="fab fa-twitter"></i></a> -->
-
-        <!-- Google -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a> -->
-
         <!-- Instagram -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/roddriguesspedro/" role="button"><i class="fab fa-instagram"></i></a>
-
-        <!-- Linkedin -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a> -->
 
         <!-- Github -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rodriguespedro22" role="button"><i class="fab fa-github"></i></a>
@@ -167,14 +157,9 @@ header("Access-Control-Allow-Origin: *");
               <li>
                 <a href="#!" class="text-white">Wiu</a>
               </li>
-              <!-- <li> -->
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
-              <!-- </li> -->
             </ul>
           </div>
-          <!--Grid column-->
 
-          <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-md-0 m-auto pb-5">
             <h5 class="text-uppercase">Produtora Musical</h5>
 
@@ -182,41 +167,9 @@ header("Access-Control-Allow-Origin: *");
               <li>
                 <a href="#!" class="text-white">30PRAUM</a>
               </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 2</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 3</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
-              </li>
             </ul>
           </div>
-          <!--Grid column-->
 
-          <!--Grid column-->
-          <!-- <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div> -->
-          <!--Grid column-->
-
-          <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0 m-auto">
             <h5 class="text-uppercase">Atendimento</h5>
 
@@ -232,21 +185,11 @@ header("Access-Control-Allow-Origin: *");
                 <p class="text-white" style="font-weight: bold">Email:</p>
                 <p class="text-white">pedrocunha.ch550@academico.ifsul.edu.br</p>
               </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 3</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
-              </li>
             </ul>
           </div>
-          <!--Grid column-->
         </div>
-        <!--Grid row-->
       </section>
-      <!-- Section: Links -->
     </div>
-    <!-- Grid container -->
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -264,7 +207,6 @@ header("Access-Control-Allow-Origin: *");
     //Get the button
     let mybutton = document.getElementById("btn-back-to-top");
 
-    // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function () {
       scrollFunction();
     };
@@ -279,7 +221,7 @@ header("Access-Control-Allow-Origin: *");
         mybutton.style.display = "none";
       }
     }
-    // When the user clicks on the button, scroll to the top of the document
+
     mybutton.addEventListener("click", backToTop);
 
     function backToTop() {
@@ -287,6 +229,7 @@ header("Access-Control-Allow-Origin: *");
       document.documentElement.scrollTop = 0;
     }
   </script>
+
   <!-- JAVASCRIPTS -->
   <!-- jQuey -->
   <script src="<?= url("assets/app/"); ?>plugins/jquery/jquery.js"></script>
@@ -315,6 +258,9 @@ header("Access-Control-Allow-Origin: *");
   <script src="<?= url("assets/app/"); ?>js/bootstrap.min.js"></script>
   <script src="<?= url("assets/app/"); ?>js/jquery.sticky.js"></script>
   <script src="<?= url("assets/app/"); ?>js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>

@@ -46,8 +46,6 @@
                         >Alterar</button>
                 </div>
 
-                <div class="alert alert-primary" role="alert" id="message">
-                </div>
 
             </form>
         </div>

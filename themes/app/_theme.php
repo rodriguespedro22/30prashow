@@ -90,7 +90,6 @@
             <ul class="site-menu main-menu js-clone-nav ml-auto ">
               <li><a href="<?= url("app/perfil"); ?>" class="nav-link text-white">Perfil</a></li>
               <li><a href="sobre" class="nav-link text-white">Meus ingressos</a></li>
-              <li><a href="contato" class="nav-link text-white">Contato</a></li>
               <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
               <li><a href="<?= url("app/sair"); ?>" class="nav-link text-white">Logout</a></li>
             </ul>

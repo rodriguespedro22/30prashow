@@ -1,12 +1,15 @@
 <?php
 
 namespace Source\App;
+
+use CoffeeCode\Router\Router;
+use Dompdf\Dompdf;
 use Source\Models\Admin;
 use League\Plates\Engine;
+use mysqli;
 use Source\Models\User;
 use Source\Models\Show;
 use Source\Models\Category;
-
 class Adm
 {
     private $view;
@@ -26,7 +29,40 @@ class Adm
         setcookie("admin","Logado",time()+60*60,"/");
         $this->view = new Engine(CONF_VIEW_ADMIN,'php');
     }
-    
+    public function createPDF () : void
+    {
+        
+        $conn = new MySQLi("CONF_DB_HOST", "CONF_DB_USER", "CONF_DB_PASS", "CONF_DB_NAME");
+        $sql = "SELECT * FROM admin";
+
+        $res = $conn->query($sql);
+
+        if ($res->num_rows > 0) {
+            $html = "<table border='1'>";
+            while($row = $res->fetch_object()){
+                $html .= "<tr>";
+                $html .= "<td>".$row->id. "</td>";
+                $html .= "<td>".$row->name. "</td>";
+                $html .= "<td>".$row->email. "</td>";
+                $html .= "</tr>";
+            }
+            $html .= "</table>";
+        }else{
+            $html .= "Nenhum dado";
+        }
+
+        // print $html;
+        // require __DIR__ . "/vendor/autoload.php";
+
+        //$route = new Router('localhost/30prashow', ":"); // Route para localhost
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->set_option('defaultFront','sans');
+        $dompdf->setPaper('A4');
+        $dompdf->render();
+        $dompdf->stream();
+
+    }
     public function registerShow(?array $data) : void
     {
         $categories = new Category();
@@ -37,12 +73,7 @@ class Adm
 
             if(!empty($_FILES['image']['tmp_name'])) {
                 $upload = uploadImage($_FILES['image']);
-                //unlink($_SESSION["user"]["image"]);
             } 
-            // else {
-                // se não houve alteração da imagem, manda a imagem que está na sessão
-            //     $upload = $_SESSION["work"];
-            // }
 
             $show = new Show(
                 null,
@@ -55,15 +86,6 @@ class Adm
             );
 
             $show->insert();
-
-            //     $writeWork = new WriteWork(
-            //     NULL,
-            //     $work->getId(),
-            //     $_SESSION["user"]["id"]
-            // );
-
-            // $writeWork->writeWorkInsert();
-
             $json = [
                 "message" => "Show cadastrado!",
                 "day" => $data["day"],
@@ -80,7 +102,6 @@ class Adm
 
         echo $this->view->render("registerShow",[
             "categoriesList" => $categoriesList
-            // "statesList" => $statesList
         ]);
 
     }
@@ -91,41 +112,22 @@ class Adm
             "show" => $show->getById($_GET["id"])
         ]);
     }
-    public function updateShow(array $data) : void
-    {
-        if(!empty($data)){
+    
+    public function deleteShow(){
+        $show = new Show();
+        $show->setId($_GET['id']);
+        $show->delete();
 
-            if(in_array("",$data)){
-                $json = [
-                    "message" => "Informe todos os campos!",
-                    "type" => "alert-danger"
-                ];
-                echo json_encode($json);
-                return;
-            }
-            $show = new Show(
-                $_GET["id"],
-                null,
-                $data["name"],
-                $data["local"],
-                null,
-                null
-            );
-            $show->updateShoww();
-
-            $json = [
-                "message" => $show->getMessage(),
-                "type" => "alert-success",
-                // "day" => $show->getDay(),
-                "name" => $show->getName(),
-                "local" => $show->getLocal()
-                // "image" => $show->getImage()
-            ];
-            echo json_encode($json);
-        }
+        header("Location:http://www.localhost/30prashow/admin/");
     }
 
-    
+    public function deleteUser(){
+        $user = new User();
+        $user->setId($_GET['id']);
+        $user->delete();
+
+        header("Location:http://www.localhost/30prashow/admin/");
+    }
      public function home() : void
     {
         $show = new Show();
@@ -160,6 +162,43 @@ class Adm
                 "user" =>$user->getById($_GET["id"])
         ]);
     }
+    public function updateShow(array $data) : void
+    {
+        if(!empty($data)){
+            if(!empty($_FILES['image']['tmp_name'])) {
+                $upload = uploadImage($_FILES['image']);
+                //unlink($_SESSION["user"]["image"]);
+            } 
+            if(in_array("",$data)){
+                $json = [
+                    "message" => "Informe todos os campos!",
+                    "type" => "alert-danger"
+                ];
+                echo json_encode($json);
+                return;
+            }
+            $show = new Show(
+                $_GET["id"],
+                $data["day"],
+                $data["name"],
+                $data["local"],
+                $upload,
+                null
+            );
+            $show->updateShoww();
+
+            $json = [
+                "message" => $show->getMessage(),
+                "type" => "alert-success",
+                "day" => $show->getDay(),
+                "name" => $show->getName(),
+                "local" => $show->getLocal(),
+                $upload => $show->getImage()
+            ];
+            echo json_encode($json);
+        }
+    }
+
     public function updateUser(array $data) : void
     {
         if(!empty($data)){
@@ -180,21 +219,24 @@ class Adm
                 echo json_encode($json);
                 return;
             }
-            
+            if(!empty($_FILES['photo']['tmp_name'])) {
+                $upload = uploadImage($_FILES['photo']);
+            } 
+
             $user = new User(
                 $_GET["id"],
                 $data["name"],
                 $data["email"],
                 null,
-                null
+                $upload
             );
-            $user->update();
+            $user->updateByAdmin();
             $json = [
                 "message" => $user->getMessage(),
                 "type" => "alert-success",
                 "name" => $user->getName(),
-                "email" => $user->getEmail()
-                // "photo" => url($user->getPhoto())
+                "email" => $user->getEmail(),
+                $upload => $user->getPhoto()
             ];
             echo json_encode($json);
         }

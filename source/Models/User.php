@@ -248,7 +248,14 @@ class User
         $_SESSION["user"] = $this;
         return true;
     }
-
+    public function delete()
+    {
+        $query = "DELETE FROM users WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        return true;
+    }
     public function update()
     {
         $query = "UPDATE users SET name = :name, email = :email, photo = :photo WHERE id = :id";
@@ -268,6 +275,24 @@ class User
         $this->message = "Usuário alterado com sucesso!";
     }
 
+    public function updateByAdmin()
+    {
+        $query = "UPDATE users SET name = :name, email = :email, photo = :photo WHERE id = :id";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->bindParam(":name",$this->name);
+        $stmt->bindParam(":email",$this->email);
+        $stmt->bindParam(":photo",$this->photo);
+        $stmt->bindParam(":id",$this->id);
+        $stmt->execute();
+        $arrayUser = [
+            "id" => $this->id,
+            "name" => $this->name,
+            "email" => $this->email,
+            "photo" => $this->photo
+        ];
+        $_GET["user"]["id"] = $arrayUser;
+        $this->message = "Usuário alterado com sucesso!";
+    }
 
     public function getJSON() : string
     {

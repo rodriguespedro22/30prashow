@@ -27,19 +27,27 @@
         </div>
         <div class="col-md-5 border-right">
             <form enctype="multipart/form-data" method="post" id="formProfile">
+            <div class="mb-3">
+                    <label for="day" class="form-label">Data: </label>
+                    <input type="date" name="day" class="form-control" id="day" value="<?= $show->day; ?>">
+                </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome: </label>
                     <input type="text" name="name" class="form-control" id="name" value="<?= $show->name; ?>">
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Local: </label>
+                    <label for="local" class="form-label">Local: </label>
                     <input type="text" name="local" class="form-control" id="local" value="<?= $show->local; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Imagem: </label>
+                    <input type="file" name="image" class="form-control" id="image" value="">
                 </div>
 
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary" name="send"
-                        >Atualizar</button>
+                    <button type="submit" class="btn btn-primary" name="send">Atualizar</button>
+                    <button type="submit" class="btn btn-primary" name="send"><a href="<?= url("admin/deletarshow/id?id=" . $show->id)?>">Deletar</a></button>
                 </div>
 
 

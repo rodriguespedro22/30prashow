@@ -1,73 +1,62 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+    $this->layout("_theme");
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="<?= url("assets/app/css/perfil.css")?>">
+<div class="container rounded bg-white">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= url("assets/web/css/cadastro.css")?>">
-    <link rel="script" href="<?= url("assets/web/scripts/scripts.js")?>">
-    <script src="https://kit.fontawesome.com/030be0d712.js" crossorigin="anonymous"></script>
-    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>30prashow</title>
-    <link rel="icon" href="<?= url("assets/web/images/30.jpg")?>">
-
-</head>
-
-<body class="bg-image">
-    <div class="container">
-        <div class="formularioLogin">
-
-            <!--        <div class="text">30PRASHOW</div>-->
-
-            <form id="form-register" novalidate>
-                <div class="formularioInput">
-                    <label class="form-label">Nome:</label>
-                    <input type="text" name="name" class="form-control" id="name" value="<?=$user->name?>">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <div class="mb-3">
+                    <?php
+                        if(!empty($user->photo)):
+                    ?>
+                        <img class="ui medium circular image img-thumbnail" id="photouser" src="<?= url($user->photo); ?>" alt="...">
+                    <?php
+                        else:
+                    ?>
+                        <img class="ui medium circular image img-thumbnail" id="photouser" src="<?= url("assets/app/images/user-photo-null.jpg"); ?>"alt="...">
+                    <?php
+                        endif;
+                    ?>
                 </div>
-                <div class="formularioInput">
-                    <label class="form-label">Email:</label>
-                    <input type="email" name="email" class="form-control" id="email" value="<?=$user->email?>">
+                <div class="font-weight-bold" value=""><?= $user->name; ?></div>
+                <div class="font-weight-bold" value=""><?= $user->email; ?></div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <form enctype="multipart/form-data" method="post" id="formProfile">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome: </label>
+                    <input type="text" name="name" class="form-control" id="name" value="<?= $user->name; ?>">
                 </div>
-                <div class="sucess formularioInput" id="message">
-                <!-- Aqui aparece a mensagem, caso ocorra erro! -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email: </label>
+                    <input type="email" name="email" class="form-control" id="email" value="<?= $user->email; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Imagem: </label>
+                    <input class="form-control" type="file" name="photo" id="photo">
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" name="send">Atualizar</button>
+                    <button type="submit" class="btn btn-primary" name="send"><a href="<?= url("admin/deletaruser/id?id=" . $user->id)?>">Deletar</a></button>
                 </div>
 
-                <div class="formularioInput">
-                    <input class="button" type="submit" value="Atualizar" onClick="window.location.reload()">
-                </div>
 
             </form>
         </div>
-
-        <div class="imgCadastro">
-            <div class="text">30PRASHOW</div>
-            <img src="<?= url("assets/app/")?>images/teto.png">>
-        </div>
-
     </div>
-
-
-    <script type="text/javascript" async>
-    const form = document.querySelector("#form-register");
-    const message = document.querySelector("#message");
+</div>
+<script type="text/javascript" async>
+    const form = document.querySelector("#formProfile");
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const dataUser = new FormData(form);
-
         const data = await fetch("<?= url("admin/editaruser/id?id=" . $user->id); ?>",{
             method: "POST",
             body: dataUser,
         });
-        console.log(data);
         const user = await data.json();
-        console.log(user);
+        console.log(user)
     });
 </script>
-</body>
-
-</html>

@@ -116,7 +116,7 @@
 =============================-->
 
   <footer class="bg-dark text-center text-white mt-5">
-      <div class="row d-flex justify-content-center">
+      <div class="d-flex justify-content-center">
         <div class="col-lg-6">
           <div class="ratio ratio-16x9" style="margin-top: 50px;">
             <iframe class="iframe" width="560" height="315" src="https://www.youtube.com/embed/WsE3mruRak8" 

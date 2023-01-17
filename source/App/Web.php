@@ -43,19 +43,20 @@ class Web
         );
     }
 
-    // public function shows(?array $data) : void
-    // {
-    //     if(!empty($data)){
-    //         $show = new Show();
-    //         $shows = $show->findByCategory($data["idCategory"]);
-    //     }
-    //     echo $this->view->render(
-    //         "works",[
-    //             "categories" => $this->categories,
-    //             "shows" => $shows
-    //         ]
-    //     );
-    // }
+    public function shows(?array $data) : void
+    {
+        if(!empty($data)){
+            $show = new Show();
+            $shows = $show->findByCategory($data["idCategory"]);
+        }
+        echo $this->view->render(
+            "shows",[
+                "categories" => $this->categories,
+                "shows" => $shows
+            ]
+        );
+    }
+
     public function about() : void
     {
         echo $this->view->render(
@@ -204,5 +205,13 @@ class Web
 
         echo $this->view->render("login",["eventName" => CONF_SITE_NAME]);
 
+    }
+    public function showFind(){
+        $show = new Show();
+
+        echo $this->view->render("show",[
+            "show" => $show->getById($_GET["id"]),
+            "categories" => $this->categories
+        ]);
     }
 }

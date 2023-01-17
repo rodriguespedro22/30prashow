@@ -9,6 +9,7 @@ define("CONF_DB_USER", "root");
 define("CONF_DB_PASS", "");
 define("CONF_DB_NAME", "30prashow"); // aqui deve ser alterado para o nome do banco de dados
 
+
 // PROJECT URLs
 
 define("CONF_URL_BASE", "http://www.localhost/30prashow"); // depois da / deve vir o nome da pasta do trabalho

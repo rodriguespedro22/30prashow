@@ -9,6 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?= url("assets/web/css/home.css")?>">
+  <link rel="stylesheet" href="<?= url("assets/web/css/categories.css")?>">
   <link rel="script" href="../../assets/web/scripts/script.js">
 
   <!-- <link href="<?= url("/assets/web/"); ?>Semantic-UI-CSS/semantic.min.css" rel="stylesheet"> -->
@@ -48,7 +49,48 @@
     </button>
   </div>
 
-            <div class="nav-item dropdown">
+  <!-- Boxes de contéudo -->
+  <!-- <h4 class="ui header">Inline</h4>
+<p>A dropdown can be formatted to appear inline in other content</p>
+<span>
+  Show me posts by
+  <div class="ui inline dropdown">
+    <div class="text">
+      <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
+      Jenny Hess
+    </div>
+    <i class="dropdown icon"></i>
+    <option class="menu">
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
+        Jenny Hess
+      </div>
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
+        Elliot Fu
+      </div>
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/stevie.jpg">
+        Stevie Feliciano
+      </div>
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/christian.jpg">
+        Christian
+      </div>
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/matt.jpg">
+        Matt
+      </div>
+      <div class="item">
+        <img class="ui avatar image" src="/images/avatar/small/justen.jpg">
+        Justen Kitsune
+      </div>
+    </option>
+  </div>
+</span> -->
+
+  <!-- <div class="m-auto card-deck mt-5 mb-5 col-md-9"> -->
+        <div class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categorias
               </a>
@@ -65,6 +107,8 @@
                         ?>
               </ul>
             </div>
+
+
   <div class="m-auto col-10 row row-cols-1 row-cols-md-3 g-4 mt-4">
     
     <?php
@@ -77,7 +121,7 @@
       <div class="card">
 
         <div class="card-img-adjust">
-          <img src="<?= $show->image; ?>" class="card-img-top" alt="...">
+          <img src="<?= url($show->image); ?>" class="card-img-top" alt="...">
         </div>
 
         <div class="card-body">

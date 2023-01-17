@@ -4,6 +4,7 @@ namespace Source\App;
 
 use Source\Models\User;
 use Source\Models\Show;
+use Source\Models\Buy;
 
 class Api
 {
@@ -16,11 +17,8 @@ class Api
 
         $this->user = new User();
 
-        if($headers["Rule"] === "N"){
-            return;
-        }
 
-        if(empty($headers["Email"]) || empty($headers["Password"])  || empty($headers["Rule"])){
+        if(empty($headers["Email"]) || empty($headers["Password"])){
             $response = [
                 "code" => 400,
                 "type" => "bad_request",
@@ -93,7 +91,29 @@ class Api
         ];
         echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-    
+    public function buyShow(array $data)
+    {
+        $show = new Show();
+        if (!empty($data)) {
+
+
+            $buyShow = new Buy(
+                null,
+                $data[$_SESSION["user"]["id"]],
+                $data[$show->getById($_GET["id"])]
+
+            );
+
+            $buyShow->insert();
+            // header("Location:http://www.localhost/30prashow/app/");
+        } 
+        $response = [
+            "code" => 200,
+            "type" => "success",
+            "message" => "Buy cadastrado com sucesso"
+        ];
+        echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
     // *************
     // SHOWS METHODS
     // *************

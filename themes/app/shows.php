@@ -9,6 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?= url("assets/web/css/home.css")?>">
+  <link rel="stylesheet" href="<?= url("assets/web/css/categories.css")?>">
   <link rel="script" href="../../assets/web/scripts/script.js">
 
   <!-- <link href="<?= url("/assets/web/"); ?>Semantic-UI-CSS/semantic.min.css" rel="stylesheet"> -->
@@ -48,7 +49,7 @@
     </button>
   </div>
 
-            <div class="nav-item dropdown">
+        <div class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categorias
               </a>
@@ -57,7 +58,7 @@
                         foreach ($categories as $category){
                         ?>
                         <li>
-                        <a class="dropdown-item" href="<?= url("shows/{$category->id}"); ?>">
+                        <a class="dropdown-item" href="<?= url("app/shows/{$category->id}"); ?>">
                           <?= $category->singers; ?></a>
                         </li>
                         <?php
@@ -65,6 +66,8 @@
                         ?>
               </ul>
             </div>
+
+
   <div class="m-auto col-10 row row-cols-1 row-cols-md-3 g-4 mt-4">
     
     <?php
@@ -72,12 +75,12 @@
         {
     ?>
     
-  <a href="<?= url("show/id?id=" . $show->id)?>">
+  <a href="<?= url("app/show/id?id=" . $show->id)?>">
     <div class="col">
       <div class="card">
 
         <div class="card-img-adjust">
-          <img src="<?= $show->image; ?>" class="card-img-top" alt="...">
+          <img src="<?= url($show->image); ?>" class="card-img-top" alt="...">
         </div>
 
         <div class="card-body">
