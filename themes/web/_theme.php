@@ -22,23 +22,19 @@
   <!-- CUSTOM CSS -->
   <link rel="icon" href="<?= url("assets/web/images/30.jpg")?>">
   <link rel="stylesheet" href="<?= url("assets/web/fonts/icomoon/style.css")?>">
-  <link rel="stylesheet" href="<?= url("assets/web/css/bootstrap.min.css")?>">
   <link rel="stylesheet" href="<?= url("assets/web/css/style.css")?>">
 
   <!-- FAVICON -->
-  <link href="<?= url("assets/web/"); ?>images/favicon.png" rel="shortcut icon">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-  </script>
+  <link href="<?= url("assets/app/"); ?>images/favicon.png" rel="shortcut icon">
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-  <!-- MDB -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <!-- MDB -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
 </head>
 
 <body class="body-wrapper">
@@ -84,26 +80,6 @@
           </div>
         </div>
 
-         <!-- <div class="col-9  text-right"></div>  -->
-
-
-          <!-- <span class="d-inline-block d-lg-block text-right ml-auto d-none" ><a href="#"
-              class="text-black site-menu-toggle js-menu-toggle py-5"><span
-                class="icon-menu h3 text-white"></span></a></span>  -->
-
-
-
-          <!-- <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
-            <ul class="site-menu main-menu js-clone-nav ml-auto ">
-              <li><a href="sobre" class="nav-link text-white">Sobre nós</a></li>
-              <li><a href="login" class="nav-link text-white">Faça o login</a></li>
-              <li><a href="cadastro" class="nav-link text-white">Faça seu cadastro</a></li>
-              <li><a href="contato" class="nav-link text-white">Contato</a></li>
-            </ul>
-          </nav> -->
-        <!-- </div>  -->
-
-
       </div>
     </div>
 
@@ -133,17 +109,8 @@
         <!-- Facebook -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/pedro.rodriguesdacunha.35/" role="button"><i class="fab fa-facebook-f"></i></a>
 
-        <!-- Twitter -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rodriguespedro22" role="button"><i class="fab fa-twitter"></i></a> -->
-
-        <!-- Google -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a> -->
-
         <!-- Instagram -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/roddriguesspedro/" role="button"><i class="fab fa-instagram"></i></a>
-
-        <!-- Linkedin -->
-        <!-- <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a> -->
 
         <!-- Github -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/rodriguespedro22" role="button"><i class="fab fa-github"></i></a>
@@ -169,12 +136,8 @@
               <li>
                 <a href="#!" class="text-white">Wiu</a>
               </li>
-              <!-- <li> -->
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
-              <!-- </li> -->
             </ul>
           </div>
-          <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-md-0 m-auto pb-5">
@@ -184,39 +147,8 @@
               <li>
                 <a href="#!" class="text-white">30PRAUM</a>
               </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 2</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 3</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
-              </li>
             </ul>
           </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <!-- <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Links</h5>
-
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#!" class="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div> -->
-          <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0 m-auto">
@@ -233,12 +165,6 @@
               <li>
                 <p class="text-white" style="font-weight: bold">Email:</p>
                 <p class="text-white">pedrocunha.ch550@academico.ifsul.edu.br</p>
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 3</a> -->
-              </li>
-              <li>
-                <!-- <a href="#!" class="text-white">Link 4</a> -->
               </li>
             </ul>
           </div>
@@ -289,34 +215,24 @@
       document.documentElement.scrollTop = 0;
     }
   </script>
-  <!-- JAVASCRIPTS -->
-  <!-- jQuey -->
-  <script src="<?= url("assets/web/"); ?>plugins/jquery/jquery.js"></script>
-  <!-- Popper js -->
-  <script src="<?= url("assets/web/"); ?>plugins/popper/popper.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="<?= url("assets/web/"); ?>plugins/bootstrap/js/bootstrap.min.js"></script>
-  <!-- Smooth Scroll -->
-  <script src="<?= url("assets/web/"); ?>plugins/smoothscroll/SmoothScroll.min.js"></script>
+  <!-- jQuery -->
+  <script src="<?= url("assets/app/"); ?>plugins/jquery/jquery.js"></script>
+  <script src="<?= url("assets/app/"); ?>js/jquery.sticky.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
   <!-- Isotope -->
-  <script src="<?= url("assets/web/"); ?>plugins/isotope/mixitup.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/isotope/mixitup.min.js"></script>
   <!-- Magnific Popup -->
-  <script src="<?= url("assets/web/"); ?>plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+  
   <!-- Slick Carousel -->
-  <script src="<?= url("assets/web/"); ?>plugins/slick/slick.min.js"></script>
+  <script src="<?= url("assets/app/"); ?>plugins/slick/slick.min.js"></script>
   <!-- SyoTimer -->
-  <script src="<?= url("assets/web/"); ?>plugins/syotimer/jquery.syotimer.min.js"></script>
+  
   <!-- Google Mapl -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
-  <script type="text/javascript" src="<?= url("assets/web/"); ?>plugins/google-map/gmap.js"></script>
-  <!-- Custom Script -->
-  <script src="<?= url("assets/web/"); ?>js/custom.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+  <script type="text/javascript" src="<?= url("assets/app/"); ?>plugins/google-map/gmap.js"></script> -->
 
-  <script src="<?= "assets/web/js/jquery-3.3.1.min.js"?>"></script>
-  <script src="<?= "assets/web/js/popper.min.js"?>"></script>
-  <script src="<?= "assets/web/js/bootstrap.min.js"?>"></script>
-  <script src="<?= "assets/web/js/jquery.sticky.js"?>"></script>
-  <script src="<?= "assets/web/js/main.js"?>"></script>
+
+  <script src="<?= url("assets/app/"); ?>js/main.js"></script>
 </body>
 
 </html>

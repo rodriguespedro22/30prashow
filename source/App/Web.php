@@ -5,6 +5,7 @@ namespace Source\App;
 
 use League\Plates\Engine;
 use Source\Models\Category;
+use Source\Models\Address;
 use Source\Models\User;
 use Source\Models\Show;
 use Source\Models\Admin;
@@ -15,11 +16,15 @@ class Web
 {
     private $view;
     private $categories;
+    private $addresses;
 
     public function __construct()
     {   
         $categories = new Category();
         $this->categories = $categories->selectAll();
+
+        $addresses = new Address();
+        $this->addresses = $addresses->selectAll();
 
         $this->view = new Engine(CONF_VIEW_WEB,'php');
 
@@ -38,6 +43,7 @@ class Web
         echo $this->view->render("home",
             [
                 "categories" => $this->categories,
+                "addresses" => $this->addresses,
                 "shows" => $shows
             ]
         );
@@ -52,6 +58,7 @@ class Web
         echo $this->view->render(
             "shows",[
                 "categories" => $this->categories,
+                "addresses" => $this->addresses,
                 "shows" => $shows
             ]
         );

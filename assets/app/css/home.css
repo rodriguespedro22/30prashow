@@ -29,6 +29,9 @@ div .carousel{
   ;
   
 }
+.site-mobile-menu .site-nav-wrap > li > a {
+    color:white !important;
+}
 .carousel-inner{
     /* border-radius: 0 0 1rem 1rem; */
 }
@@ -72,4 +75,7 @@ div .carousel{
 footer{
     background: rgb(51,7,7);
     background: linear-gradient(0deg, rgba(51,7,7,1) 34%, rgba(136,113,113,1) 100%);
+}
+.site-mobile-menu .site-nav-wrap > li > a {
+    color:white;
 }

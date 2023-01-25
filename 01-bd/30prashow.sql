@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `state` varchar(45) NOT NULL,
   `zipCode` varchar(45) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `udated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_addresses_shows_idx` (`idShow`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `buy_show` (
 DROP TABLE IF EXISTS `shows`;
 CREATE TABLE IF NOT EXISTS `shows` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `day` date DEFAULT NULL,
+  `day` date NOT NULL,
   `name` varchar(100) NOT NULL,
   `local` varchar(100) NOT NULL,
-  `image` varchar(300) NOT NULL,
+  `image` varchar(300) DEFAULT NULL,
   `idCategory` int DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -163,6 +163,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `photo`, `type`, `create
 (2, 'Alexandre Leal', 'alexandre@gmail.com', '$2y$10$mQzKh2VzjHmlrOv0izGgRumm5kx0mpUjXl1wdbV5BiQ6UqUowWw0.', NULL, 'W', '2022-12-17 19:19:36', NULL),
 (3, 'Pedro', 'pedro10@gmail.com', '$2y$10$mQzKh2VzjHmlrOv0izGgRumm5kx0mpUjXl1wdbV5BiQ6UqUowWw0.', NULL, 'C', '2022-12-17 19:19:36', NULL);
 
+INSERT INTO `addresses` (`id`, `idShow`, `city`, `state`, `zipCode`, `created_at`, `updated_at`) VALUES 
+('1', '1', 'Charqueadas', 'Rio Grande do Sul', '96745000', current_timestamp(), NULL),
+('2', '2', 'Charqueadas', 'Rio Grande do Sul', '96745000', current_timestamp(), NULL);
 --
 -- Restrições para despejos de tabelas
 --
@@ -185,7 +188,6 @@ ALTER TABLE `buy_show`
 --
 ALTER TABLE `shows`
   ADD CONSTRAINT `fk_shows_category1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`id`);
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

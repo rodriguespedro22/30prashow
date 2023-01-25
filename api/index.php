@@ -20,7 +20,7 @@ $route->get("/user/{id}","Api:getUser");
 
 $route->get("/user/shows","Api:getShows");
 
-$route->get("/show/{idShow}","Api:getShow");
+$route->get("/user/show/{idShow}","Api:getShow");
 
 // PUT ROUTES USER
 
@@ -33,6 +33,8 @@ $route->put("/show/{idShow}/name/{name}/local/{local}","Api:updateShow");
 // POST ROUTES USER
 
 $route->post("/user/type/{type}/name/{name}/email/{email}/password/{password}", "Api:createUser");
+
+$route->post("/admin/type/{type}/name/{name}/email/{email}/password/{password}", "Api:createUser");
 
 $route->post("/user/comprarshow/id/{idShow}", "Api:buyShow");
 // $route->post("/comprarshow/{idShow}", "App:buyShow");

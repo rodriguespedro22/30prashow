@@ -10,14 +10,22 @@ $this->layout("_theme",["categories" => $categories]);
                 <div class="container px-5">
                     <div class="row gx-5 align-items-center justify-content-center">
                         <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
+                            <div class="my-5 text-xl-start">
                                 <h1 class="display-5 fw-bolder text-white mb-2"><?= $show->name; ?></h1>
                                 <p class="lead fw-normal text-white-50 mb-4"><?= $show->day; ?>
                                 <br/>
-                                <?= $show->local; ?>
+                                <?php
+              foreach ($addresses as $address){
+            if ($address->idShow == $show->id) {
+              ?>
+<?= $address->city; ?>, <?= $address->state; ?></small>
+<?php
+            }
+          }
+                        ?>
                                 </p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a id="buy" type="submit"class="btn btn-primary btn-lg px-4 me-sm-3">Comprar ingresso</a>
+                                    <a id="buy" type="submit"class="btn botao btn-primary btn-lg px-4 me-sm-3">Comprar ingresso</a>
                                 </div>
                             </div>
                         </div>
@@ -34,12 +42,14 @@ $this->layout("_theme",["categories" => $categories]);
         buy.addEventListener("click", async () => {
             // e.preventDefault();
             // window.alert("Oi");
-            const dataPost = new HTMLLinkElement(buy);
+            // const dataPost = new HTMLLinkElement(buy);
             // console.log(dataPost)
             const data = await fetch("<?= url("app/comprarshow/" . $show->id)?>",{
                 method: "POST",
-                body: dataPost,
+                // body: dataPost,
             });
+            // const compra = await data.();
+            // console.log(compra);
             // console.log(data)
         });
     </script>

@@ -13,3 +13,7 @@
 .text-white{
     color:black !important;
 }
+body{
+    
+    height: 100% !important;
+}

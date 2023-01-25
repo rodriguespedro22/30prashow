@@ -13,7 +13,7 @@ header("Access-Control-Allow-Origin: *");
     <script src="https://kit.fontawesome.com/030be0d712.js" crossorigin="anonymous"></script>
     <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>30prashow | Cadastro</title>
+    <title>30prashow</title>
     <link rel="icon" href="<?= url("assets/web/images/30.jpg")?>">
     <link>
 </head>
@@ -21,8 +21,6 @@ header("Access-Control-Allow-Origin: *");
 <body class="bg-image">
     <div class="container">
         <div class="formularioLogin">
-
-            <!--        <div class="text">30PRASHOW</div>-->
 
             <form id="form-register" novalidate>
                 <div class="formularioInput">
@@ -41,25 +39,6 @@ header("Access-Control-Allow-Origin: *");
                     <label class="form-label">Local:</label>
                     <input class="form-control" type="text" id="local" name="local" value="">
                 </div>
-                <!-- <div class="formularioInput">
-                    <i class="fa-solid fa-spell-check"></i>
-                    <input type="text" name="name" value="" placeholder="Nome completo" required>
-                </div> -->
-
-                <!-- <div class="formularioInput">
-                    <i class="fa-solid fa-arrow-up-1-9"></i>
-                    <input type="text" placeholder="Idade" required>
-                </div> -->
-
-                <!-- <div class="formularioInput">
-                    <i class="fa fa-envelope"></i>
-                    <input type="email" name="email" value="" placeholder="Email" required>
-                </div>
-
-                <div class="formularioInput">
-                    <i id="toggler" class="fa-solid fa-eye-slash"></i>
-                    <input type="password" name="password" id="fakePassword" placeholder="Senha" required>
-                </div> -->
 
                 <select class="form-select form-select-lg mb-3" name="category" aria-label=".form-select-lg example">
                     <option selected>Escolher categoria</option>
@@ -73,7 +52,7 @@ header("Access-Control-Allow-Origin: *");
                 </select>
 
                 <div class="formularioInput">
-                    <input class="button" type="submit" value="Criar">
+                    <input class="button" type="submit" value="Criar" >
                 </div>
 
             </form>

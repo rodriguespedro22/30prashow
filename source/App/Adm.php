@@ -10,11 +10,13 @@ use mysqli;
 use Source\Models\User;
 use Source\Models\Show;
 use Source\Models\Category;
+use Source\Models\Address;
 class Adm
 {
     private $view;
 
     private $categories;
+    private $addresses;
 
     public function __construct()
     {
@@ -26,47 +28,55 @@ class Adm
         $categories = new Category();
         $this->categories = $categories->selectAll();
 
+        $addresses = new Address();
+        $this->addresses = $addresses->selectAll();
+
         setcookie("admin","Logado",time()+60*60,"/");
         $this->view = new Engine(CONF_VIEW_ADMIN,'php');
     }
-    public function createPDF () : void
-    {
+
+    // public function createPDF () : void
+    // {
         
-        $conn = new MySQLi("CONF_DB_HOST", "CONF_DB_USER", "CONF_DB_PASS", "CONF_DB_NAME");
-        $sql = "SELECT * FROM admin";
+    //     $conn = new MySQLi("CONF_DB_HOST", "CONF_DB_USER", "CONF_DB_PASS", "CONF_DB_NAME");
+    //     $sql = "SELECT * FROM admin";
 
-        $res = $conn->query($sql);
+    //     $res = $conn->query($sql);
 
-        if ($res->num_rows > 0) {
-            $html = "<table border='1'>";
-            while($row = $res->fetch_object()){
-                $html .= "<tr>";
-                $html .= "<td>".$row->id. "</td>";
-                $html .= "<td>".$row->name. "</td>";
-                $html .= "<td>".$row->email. "</td>";
-                $html .= "</tr>";
-            }
-            $html .= "</table>";
-        }else{
-            $html .= "Nenhum dado";
-        }
+    //     if ($res->num_rows > 0) {
+    //         $html = "<table border='1'>";
+    //         while($row = $res->fetch_object()){
+    //             $html .= "<tr>";
+    //             $html .= "<td>".$row->id. "</td>";
+    //             $html .= "<td>".$row->name. "</td>";
+    //             $html .= "<td>".$row->email. "</td>";
+    //             $html .= "</tr>";
+    //         }
+    //         $html .= "</table>";
+    //     }else{
+    //         $html .= "Nenhum dado";
+    //     }
 
-        // print $html;
-        // require __DIR__ . "/vendor/autoload.php";
+    //     // print $html;
+    //     // require __DIR__ . "/vendor/autoload.php";
 
-        //$route = new Router('localhost/30prashow', ":"); // Route para localhost
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->set_option('defaultFront','sans');
-        $dompdf->setPaper('A4');
-        $dompdf->render();
-        $dompdf->stream();
+    //     //$route = new Router('localhost/30prashow', ":"); // Route para localhost
+    //     $dompdf = new Dompdf();
+    //     $dompdf->loadHtml($html);
+    //     $dompdf->set_option('defaultFront','sans');
+    //     $dompdf->setPaper('A4');
+    //     $dompdf->render();
+    //     $dompdf->stream();
 
-    }
+    // }
+
     public function registerShow(?array $data) : void
     {
         $categories = new Category();
         $categoriesList = $categories->selectAll();
+
+        $addresses = new Address();
+        $addressesList = $addresses->selectAll();
 
         if(!empty($data)){
             $data = filter_var_array($data,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -81,7 +91,7 @@ class Adm
                 $data["name"],
                 $data["local"],
                 $upload,
-                $data["category"],
+                $data["category"]
                 
             );
 
@@ -101,7 +111,8 @@ class Adm
         }
 
         echo $this->view->render("registerShow",[
-            "categoriesList" => $categoriesList
+            "categoriesList" => $categoriesList,
+            "addressesList" => $addressesList
         ]);
 
     }
@@ -136,6 +147,7 @@ class Adm
         echo $this->view->render("home",
             [
                 "categories" => $this->categories,
+                "addresses" => $this->addresses,
                 "shows" => $shows
             ]
         );
@@ -247,4 +259,29 @@ class Adm
         setcookie("admin","Logado",time() - 3600,"/");
         header("Location:http://www.localhost/30prashow/");
     }
+
+    public function usersPdf() {
+        $user = new User();
+        echo $this->view->render("usersPdf",
+            [
+                "users" => $user->selectAll()
+            ]);
+    }
+
+    public function showsPdf() {
+        $show = new Show();
+        echo $this->view->render("showsPdf",
+            [
+                "shows" => $show->selectAll()
+            ]);
+    }
+    // public function repositoriesPdf() {
+    //     $show = new Show();
+    //     $dataShow = $show->selectAll();
+    //     $repositories = $this->getS($dataShow);
+    //     echo $this->view->render("repositoriesPdf",
+    //     [
+    //         "repositories" => $repositories
+    //     ]);
+    // }
 }

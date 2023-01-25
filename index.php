@@ -89,6 +89,9 @@ $route->get("/deletarshow/{idShow}", "Adm:deleteShow");
 $route->post("/cadastrarshow","Adm:registerShow");
 $route->post("/editarshow/{idShow}", "Adm:updateShow");
 
+$route->get("/userspdf", "Adm:usersPdf");
+$route->get("/showspdf", "Adm:showsPdf");
+
 $route->get("/sair","Adm:logout");
 
 $route->group(null);

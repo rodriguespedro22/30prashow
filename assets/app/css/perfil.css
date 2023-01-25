@@ -13,3 +13,7 @@
 .text-white{
     color:black !important;
 }
+
+.site-mobile-menu .site-nav-wrap > li > a {
+    color:white;
+}

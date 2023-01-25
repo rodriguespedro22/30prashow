@@ -54,9 +54,17 @@
         <div class="card-body">
           <h5 class="card-text"><?= $show->day; ?></h5>
           <p class="card-text text-black font-weight-bold"><?= $show->name; ?></p>
+          <?php
+              foreach ($addresses as $address){
+            if ($address->idShow == $show->id) {
+              ?>
           <div class="d-grid gap-2 d-md-block">
-            <p class="card-text"><small class="text-muted"><?= $show->local;?></small></p>
+            <p class="card-text"><small class="text-muted"><?= $address->city; ?>, <?= $address->state; ?></small></p>
           </div>
+<?php
+            }
+          }
+                        ?>
           <div class="d-grid gap-2 d-md-block">
           <?php
                         foreach ($categories as $category){
