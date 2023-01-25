@@ -82,7 +82,6 @@
             <ul class="site-menu main-menu js-clone-nav ml-auto ">
               <li><a href="<?= url("app/perfil"); ?>" class="nav-link">Perfil</a></li>
               <li><a href="sobre" class="nav-link">Meus ingressos</a></li>
-              <li><a href="sobre" class="nav-link">Sobre nós</a></li>
               <li><a href="<?= url("app/sair"); ?>" class="nav-link">Logout</a></li>
             </ul>
           </nav>

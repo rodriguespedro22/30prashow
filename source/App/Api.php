@@ -9,6 +9,7 @@ use Source\Models\Buy;
 class Api
 {
     private $user;
+    private $show;
     // private $
     public function __construct()
     {
@@ -16,6 +17,7 @@ class Api
         $headers = getallheaders();
 
         $this->user = new User();
+        $this->show = new Show();
 
 
         if(empty($headers["Email"]) || empty($headers["Password"])){
@@ -91,6 +93,31 @@ class Api
         ];
         echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+    public function createShow(array $data)
+    {   
+        $this->show->setDay($data["day"]);
+        $this->show->setName($data["name"]);
+        $this->show->setLocal($data["local"]);
+        $this->show->setIdCategory($data["idCategory"]);
+        $this->show->insert();
+        $response = [
+            "code" => 200,
+            "type" => "success",
+            "message" => "Show cadastrado com sucesso"
+        ];
+        echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+    public function getUsers(){
+
+        $users = new User();
+        $user = [
+            "code" => 200,
+            "type" => "success",
+            "message" => "Usuários encontrados:",
+            "user" => $users->getAllUsers()
+        ];
+        echo json_encode($user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
     public function buyShow(array $data)
     {
         $show = new Show();
@@ -114,6 +141,37 @@ class Api
         ];
         echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+    public function getUserById(array $data)
+    {
+
+        if(!empty($data["idUser"])){
+            $user = new User($data["idUser"]);
+            if(!$user->findById()){
+                $response = [
+                    "code" => 400,
+                    "type" => "bad_request",
+                    "message" => "User não cadastrado..."
+                ];
+                echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                return;
+            }
+
+            $response = [
+                "code" => 200,
+                "type" => "success",
+                "message" => "Usuário encontrado!",
+                "user" => [
+                    "id" => $user->getId(),
+                    "name" => $user->getName(),
+                    "email" => $user->getEmail(),
+                    "photo" => $user->getPhoto(),
+                    "type" => $user->getType()
+                ]
+            ];
+            echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
     // *************
     // SHOWS METHODS
     // *************
@@ -140,13 +198,6 @@ class Api
 
     public function getShow(array $data)
     {
-        // if(!empty($data)){
-            // var_dump($data);
-            // $show = new Show();
-            // $show = new Show(1);
-            // $show ->findById();
-            // echo json_encode($show->getArrayShows(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        // }
 
         if(!empty($data["idShow"])){
             $show = new Show($data["idShow"]);
@@ -173,7 +224,7 @@ class Api
             echo json_encode($response,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
-
+    
     public function getShows(){
 
             $shows = new Show();
@@ -184,6 +235,7 @@ class Api
                 "show" => $shows->getAllShows()
             ];
             echo json_encode($show,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        
     }
     
     

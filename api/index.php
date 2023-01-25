@@ -14,7 +14,9 @@ $route->namespace("Source\App");
 
 $route->get("/user","Api:getUser");
 
-$route->get("/user/{id}","Api:getUser");
+$route->get("/user/{idUser}","Api:getUserById");
+
+$route->get("/users","Api:getUsers");
 
 // GET ROUTES SHOW
 
@@ -28,13 +30,13 @@ $route->put("/user/name/{name}/email/{email}","Api:updateUser");
 
 // PUT ROUTES SHOW
 
-$route->put("/show/{idShow}/name/{name}/local/{local}","Api:updateShow");
+$route->put("/user/show/{idShow}/name/{name}/local/{local}","Api:updateShow");
 
 // POST ROUTES USER
 
 $route->post("/user/type/{type}/name/{name}/email/{email}/password/{password}", "Api:createUser");
 
-$route->post("/admin/type/{type}/name/{name}/email/{email}/password/{password}", "Api:createUser");
+$route->post("/user/show/day/{day}/name/{name}/local/{local}/idCategory/{idCategory}", "Api:createShow");
 
 $route->post("/user/comprarshow/id/{idShow}", "Api:buyShow");
 // $route->post("/comprarshow/{idShow}", "App:buyShow");

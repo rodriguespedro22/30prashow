@@ -150,11 +150,12 @@ class User
         if($stmt->rowCount() == 0){
             return false;
         } else {
-            return $stmt->fetch();
-            // $this->name = $user->name;
-            // $this->email = $user->email;
-            // $this->photo = $user->photo;
-            // return true;
+            $user = $stmt->fetch();
+            $this->name = $user->name;
+            $this->email = $user->email;
+            $this->photo = $user->photo;
+            $this->type = $user->type;
+            return true;
         }
     }
     public function getById(?int $id)
@@ -191,6 +192,17 @@ class User
         }
     }
 
+    public function getAllUsers (){
+        $query = "SELECT * FROM users";
+        $stmt = Connect::getInstance()->prepare($query);
+        $stmt->execute();
+
+        if($stmt->rowCount() == 0){
+            return false;
+        } else {
+            return $stmt->fetchAll();
+        }
+    }
     /**
      * @param string $email
      * @param string $password
